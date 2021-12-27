@@ -1,34 +1,57 @@
 #include "soLong.h"
 
+/*****************************************
+*       main                             *
+******************************************
+ * Description:
+ * 	Start the program. 
+ * Return value:
+ * 	0 if all good.
+ *  1 if error occourse.
+ * Contains functions:
+ * 		1. check_extention_argv;
+ * 		2. construct_t_mlx;
+ * 		3. parser_valid_argv1;
+ * 		4. destruct_t_mlx;
+*/
+
 int main(int argc, char **argv)
 {
-    t_mlx	al;
+    t_mlx	all;
 
 
     if (argc == 2)
 	{
 		check_extention_argv(argv[1], ".ber");
-    	construct_t_mlx(&al, argv);
-		parser_valid_argv1(&al);
+    	construct_t_mlx(&all, argv);
+		parser_valid_argv1(&all);
 
-		// parser_valid_argv1(&al, 0, 1, 0);
-		// if (argc == 2)
-		// {
 		// 	bonus_volume();
-		// 	al.win = mlx_new_window(al.mlx, al.r_xy[0], al.r_xy[1], "W");
-		// }
-		// if (argc == 2 && al.win == NULL)
-		// 	write(1, "Error\nmlx_new_window error\n", 28);
-		// if (!(argc == 2 && al.win == NULL))
-			// ft_mlx_functions(&al);
-    	destruct_t_mlx(&al);
+		all.win = mlx_new_window(all.mlx, all.map_lenght * BLOCK_SIZE, all.map_height * BLOCK_SIZE, "W");
+		if (all.win == NULL)
+			error_occurse(&all, ERROR_MLX_NEW_WINDOW);
+		graphics(&all);
+    	destruct_t_mlx(&all);
 	}
 	else
 		write(1, "Error:\nwrong numbers of arguments (argc)\n", 41);
-	// exit_clean(&al, -1, 0);
-
     return (0);
 }
+
+/*****************************************
+*       error_occurse                    *
+******************************************
+ * Description:
+ * 		The function is intended to be called in case of an error.
+ * 		The function prints an error message to standard output, 
+ * 		clears the memory previously allocated dynamically in the 
+ * 		program, and exits the program with code 1.
+ * Exit code:
+ * 	    1.
+ * Contains functions:
+ * 		1. ft_strlen;
+ * 		2. destruct_t_mlx;
+*/
 
 void	error_occurse(t_mlx *all, char *msg)
 {

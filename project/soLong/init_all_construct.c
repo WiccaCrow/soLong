@@ -1,26 +1,5 @@
 #include "soLong.h"
 
-// /*****************************************
-// *		1.3.8. check_screen_size         *
-// ******************************************
-// *	Check the screen size.
-// */
-
-// void	check_screen_size(t_mlx *all)
-// {
-// 	int	width;
-// 	int	height;
-
-// 	if ((*all).win)
-// 	{
-// 		mlx_get_screen_size(&width, &height);
-// 		if ((*all).win && (int)(*all).r_xy[0] > width)
-// 			(*all).r_xy[0] = width;
-// 		if ((*all).win && (int)(*all).r_xy[1] > height)
-// 			(*all).r_xy[1] = height;
-// 	}
-// }
-
 /*****************************************
 *	1.1.    construct_t_mlx  			 *
 ******************************************
@@ -39,7 +18,7 @@ void	construct_t_mlx(t_mlx *all, char **av)
     all->fd = open(all->argv1, O_RDONLY);
     if (all->fd == -1)
     {
-        write(STDOUT_FILENO, ERROR_open, ft_strlen(ERROR_open));
+        write(STDOUT_FILENO, ERROR_OPEN, ft_strlen(ERROR_OPEN));
         exit(1);
     }
 	construct_t_mlx_texture(all);
@@ -49,7 +28,9 @@ void	construct_t_mlx(t_mlx *all, char **av)
 	(*all).line = NULL;
 	(*all).map_begin = NULL;
 	(*all).map = NULL;
-	(*all).nb_map_lines = 0;
+	(*all).map_height = 0;
+	(*all).map_lenght = 0;
+
 
 	// (*all).r_xy[0] = 0;
 	// (*all).r_xy[1] = 0;
@@ -103,7 +84,7 @@ void	construct_t_mlx_texture(t_mlx *all)
 	(*all).mlx = mlx_init();
 	if (!(*all).mlx)
 	{
-		write(1, "Error\nmlx_init error.\n", 23);
+		write(1, ERROR_MLX_INIT, ft_strlen(ERROR_MLX_INIT));
 		exit (1);
 	}
 	// i = -1;
@@ -136,7 +117,7 @@ void    destruct_t_mlx(t_mlx *all)
 
 	if (all->map)
 	{
-		// i = all->nb_map_lines;
+		// i = all->map_height;
 // 		while (i--)
 // 		{
 // printf("test delete 2 %d\n", i);

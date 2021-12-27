@@ -10,9 +10,23 @@
 #include "stdio.h"
 
 // ERRORS
-# define ERROR_map_extention "Error\n wrong extension of 1st argument\n"
-# define ERROR_open "Error\n error opening file with map\n"
+# define ERROR_OPEN "Error\n error opening file with map\n"
+# define ERROR_MALLOC "Error\n malloc error\n"
 
+# define ERROR_MLX_INIT "Error\n mlx_init error.\n"
+# define ERROR_MLX_NEW_WINDOW "Error\nmlx_new_window error\n"
+
+# define ERROR_MAP_EXTENTION "Error\n wrong extension of 1st argument\n"
+# define ERROR_MAP_RECTANGULAR "Error\nThe map must be rectangular\n"
+# define ERROR_MAP_EMPTY "Error\n empty map\n"
+# define ERROR_MAP_CLOSED "Error\n The map must be closed/surrounded by wall\n"
+# define ERROR_MAP_SIMBOLS "Error\n invalid symbols in the map\n"
+# define ERROR_MAP_SIMBOLS_INCOMPLETE "Error\n the map character set is incomplete. Required characters: 01CEP\n"
+
+// Scale
+# define BLOCK_SIZE 48
+
+// Datas
 typedef struct s_map_list {
 	char				*line;
 	struct s_map_list	*next;
@@ -28,7 +42,8 @@ typedef struct s_mlx {
 	int				fd;
 	char			*line;
 	char			**map;
-	int				nb_map_lines;
+	int				map_height;
+	int				map_lenght;
 	t_map_list		*map_begin;
 
 	// collectible
@@ -40,12 +55,12 @@ typedef struct s_mlx {
 
 // lib_functions
 //		file: lib_functions/lib_functions.c
-t_map_list		*ft_map_list_new(char *line);
+t_map_list		*ft_map_list_new(t_mlx *all, char *line);
 t_map_list		*ft_map_list_last(t_map_list *lst);
 void			ft_map_list_add_back(t_map_list **lst, t_map_list *new);
 void			ft_map_list_clear(t_map_list **lst, void (*del)(t_map_list*));
 void			ft_map_list_delone(t_map_list *lst);
-// char		*ft_strdup(const char *s1);
+int				ft_strchr_int(const char *s, int c);
 
 
 // constructors/init and destructors/clean
@@ -59,12 +74,14 @@ void    destruct_t_mlx(t_mlx *all);
 //		file: valid.c
 void	check_extention_argv(char *av, char *extension);
 void	parser_valid_argv1(t_mlx *all);
+int		map_check_and_fill(t_mlx *all);
 void	valid_empty_map(t_mlx *all, int gnl, int len_line);
 void	valid_fill_map(t_mlx *all, char *simbols);
 void	valid_one_char(t_mlx *all, char *simbols, char char_to_check);
 void	map_add_list(t_mlx *all, char *line);
 void	map_array_fill(t_mlx *all);
-
+void	checks_character_sets(t_mlx *all);
+void	checks_character_sets_find_matches(t_mlx *all, int *set_01cep_int, char *set_01cep_char);
 
 // errors
 //		file: main.c

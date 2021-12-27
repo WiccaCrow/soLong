@@ -6,9 +6,9 @@ FLAGS 		= 	-Wall -Wextra -Werror
 SRC 		= 						  	\
 				main.c 				  	\
 				init_all_construct.c 	\
-				valid.c				 	\
+				valid_0.c valid_1.c	 	\
 
-SRC_LIB 	=	./lib_functions/lib_functions.c
+SRC_LIB 	=	./lib_functions/lib_functions_0.c ./lib_functions/lib_functions_1.c
 SRC_GNL 	=	./gnl/get_next_line.c ./gnl/get_next_line_utils.c
 
 # ifdef MAKE_BONUS
@@ -27,12 +27,17 @@ SRC1 		+= $(SRC_GNL)
 
 OBJ = $(SRC1:.c=.o)
 
-ifdef (__APPLE__)
-CinO		=	$(CC) $(FLAGS) -Imlx -c $< -o $@ -I$(FOLDER) $@ -c $<
-SOLONG		=	$(CC) $(MLX) -o $(NAME) $(OBJ)
+OS 			= 	$(shell uname -s)
+ifeq ($(OS),Darwin)
+$(info Darwin)
+CinO		=	$(CC) $(FLAGS) -Imlx -c $< -o $@ -I$(FOLDER)
+SOLONG		=	$(CC) $(MLX) $(OBJ) -o $(NAME) $(MLX)
 MLX 		= 	-Lmlx -lmlx -framework OpenGL -framework AppKit
 MINILIBX 	= 	make -C mlx
-else
+endif
+
+ifeq ($(OS),Linux)
+$(info Linux)
 CinO		=	$(CC) $(FLAGS) -g -I$(FOLDER) -I./mlx_linux -c $(@:.o=.c) -o $@ -L./mlx_linux $(MLX)
 SOLONG		=	$(CC) -g -I$(FOLDER) -I./mlx_linux -o $(NAME) $(OBJ) -L./mlx_linux $(MLX)
 MLX 		= 	-lm -lmlx -lXext -lX11
@@ -46,11 +51,8 @@ all: $(NAME)
 
 # bonus: ; $(MAKE) MAKE_BONUS=0 all
 
-# $(OBJ): %.o: %.c $(HEAD)
-# 	$(CC) $(FLAGS) -I$(FOLDER) -c $< -o $@
 
-
-$(NAME): $(OBJ) 
+$(NAME): $(OBJ)
 		$(MINILIBX)
 		$(SOLONG)
 
