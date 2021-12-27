@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "solong.h": "c",
+        "mlx_int.h": "c"
+    }
+}

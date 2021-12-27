@@ -1,64 +1,66 @@
-NAME = so_long
+NAME 		= so_long
 
-MLX = -Lmlx -lmlx -framework OpenGL -framework AppKit
+CC			=	gcc
+FLAGS 		= 	-Wall -Wextra -Werror
 
-FLAGS = -Wall -Wextra -Werror
+SRC 		= 						  	\
+				main.c 				  	\
+				init_all_construct.c 	\
+				valid.c				 	\
 
-SRC = \
-# main_1_main.c \
-# main_2_start_all.c \
-# map/fill_all_except_the_map.c \
-# map/libft_add_func.c \
-# map/fill_map_part1.c \
-# map/fill_map_part2.c \
-# map/gnl/get_next_line_utils.c \
-# map/gnl/get_next_line.c \
-# graphic/mlx_1_start.c \
-# graphic/mlx_2_raycasting.c \
-# graphic/mlx_3_raycasting_intersection_horiz.c \
-# graphic/mlx_4_raycast_inters_vertical_and_drow_w_f_c.c \
-# graphic/mlx_5_texture.c \
-# graphic/mlx_6_sprite.c \
-# graphic/mlx_7_sprite_drow.c \
-# graphic/mlx_8_save_bmp.c
+SRC_LIB 	=	./lib_functions/lib_functions.c
+SRC_GNL 	=	./gnl/get_next_line.c ./gnl/get_next_line_utils.c
 
+# ifdef MAKE_BONUS
+# FOLDER = ./soLong_bonus/
+# SRC1 = $(addprefix $(FOLDER), $(SRC))
+# SRC1 += $(addprefix $(FOLDER), graphic/bonus_correct_move.c graphic/bonus_itoa.c graphic/bonus_drow_map.c main_3_start_all.c)
+# HEAD = ./soLong_bonus/soLong.h
+# else
+FOLDER 		= ./soLong/
+SRC1 		= $(addprefix $(FOLDER), $(SRC))
+HEAD 		= ./soLong/
+# endif
 
-ifdef MAKE_BONUS
-FOLDER = ./soLong_bonus/
-SRC1 = $(addprefix $(FOLDER), $(SRC))
-SRC1 += $(addprefix $(FOLDER), graphic/bonus_correct_move.c graphic/bonus_itoa.c graphic/bonus_drow_map.c main_3_start_all.c)
-HEAD = ./soLong_bonus/soLong.h
-else
-FOLDER = ./soLong/
-SRC1 = $(addprefix $(FOLDER), $(SRC))
-HEAD = ./soLong/soLong.h
-endif
+SRC1 		+= $(SRC_LIB)
+SRC1 		+= $(SRC_GNL)
 
 OBJ = $(SRC1:.c=.o)
 
+ifdef (__APPLE__)
+CinO		=	$(CC) $(FLAGS) -Imlx -c $< -o $@ -I$(FOLDER) $@ -c $<
+SOLONG		=	$(CC) $(MLX) -o $(NAME) $(OBJ)
+MLX 		= 	-Lmlx -lmlx -framework OpenGL -framework AppKit
+MINILIBX 	= 	make -C mlx
+else
+CinO		=	$(CC) $(FLAGS) -g -I$(FOLDER) -I./mlx_linux -c $(@:.o=.c) -o $@ -L./mlx_linux $(MLX)
+SOLONG		=	$(CC) -g -I$(FOLDER) -I./mlx_linux -o $(NAME) $(OBJ) -L./mlx_linux $(MLX)
+MLX 		= 	-lm -lmlx -lXext -lX11
+MINILIBX 	= 	make -C mlx_linux
+endif
+
+%.o: %.c $(HEAD)
+		$(CinO)
+
 all: $(NAME)
 
-bonus: ; $(MAKE) MAKE_BONUS=0 all
+# bonus: ; $(MAKE) MAKE_BONUS=0 all
 
-%.o: %.c$(HEAD)
-	gcc $(FLAGS) -Imlx -c $< -o $@ -I $(HEAD) $@ -c $<
+# $(OBJ): %.o: %.c $(HEAD)
+# 	$(CC) $(FLAGS) -I$(FOLDER) -c $< -o $@
 
-$(OBJ): %.o: %.c $(HEAD)
-	gcc $(FLAGS) -I$(HEAD) -c $< -o $@
-
-MINILIBX = make -C mlx
 
 $(NAME): $(OBJ) 
 		$(MINILIBX)
-	gcc $(MLX) -o $(NAME) $(OBJ)
+		$(SOLONG)
 
 clean: ; rm -rf $(OBJ) ; make clean -C mlx
-cleanbonus: ; $(MAKE) MAKE_BONUS=0 clean
+# cleanbonus: ; $(MAKE) MAKE_BONUS=0 clean
 
 fclean:	clean ; rm -rf $(NAME)
-fcleanbonus: ; $(MAKE) MAKE_BONUS=0 clean ; rm -rf $(NAME)
+# fcleanbonus: ; $(MAKE) MAKE_BONUS=0 clean ; rm -rf $(NAME)
 
 re: fclean all
-rebonus: ; $(MAKE) MAKE_BONUS=0 fclean all
+# rebonus: ; $(MAKE) MAKE_BONUS=0 fclean all
 
-.PHONY: all clean fclean re bonus cleanbonus fcleanbonus rebonus
+# .PHONY: all clean fclean re bonus cleanbonus fcleanbonus rebonus

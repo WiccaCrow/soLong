@@ -1,0 +1,9 @@
+Не хватает частей библиотеки? Хм...
+тогда надо найти их:
+
+установить прогу для поиска пакета
+sudo apt install apt-file
+sudo apt-file update
+
+поиск пакета, к примеру "gl.h"
+sudo apt-file search "gl.h"

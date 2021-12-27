@@ -1,0 +1,180 @@
+#include "soLong.h"
+
+// /*****************************************
+// *		1.3.8. check_screen_size         *
+// ******************************************
+// *	Check the screen size.
+// */
+
+// void	check_screen_size(t_mlx *all)
+// {
+// 	int	width;
+// 	int	height;
+
+// 	if ((*all).win)
+// 	{
+// 		mlx_get_screen_size(&width, &height);
+// 		if ((*all).win && (int)(*all).r_xy[0] > width)
+// 			(*all).r_xy[0] = width;
+// 		if ((*all).win && (int)(*all).r_xy[1] > height)
+// 			(*all).r_xy[1] = height;
+// 	}
+// }
+
+/*****************************************
+*	1.1.    construct_t_mlx  			 *
+******************************************
+*	Init all variables and pointers.
+*
+*	functions:
+*	1.1.1. construct_t_mlx_texture
+// *	1.1.2. construct_t_mlx_move_sprite_wall
+*/
+
+void	construct_t_mlx(t_mlx *all, char **av)
+{
+	// int	i;
+
+    all->argv1 = av[1];
+    all->fd = open(all->argv1, O_RDONLY);
+    if (all->fd == -1)
+    {
+        write(STDOUT_FILENO, ERROR_open, ft_strlen(ERROR_open));
+        exit(1);
+    }
+	construct_t_mlx_texture(all);
+	all->collect = 0;
+	all->collect_total = 0;
+
+	(*all).line = NULL;
+	(*all).map_begin = NULL;
+	(*all).map = NULL;
+	(*all).nb_map_lines = 0;
+
+	// (*all).r_xy[0] = 0;
+	// (*all).r_xy[1] = 0;
+	// i = 3;
+	// while (i--)
+	// {
+	// 	(*all).f_rgb[i] = 0;
+	// 	(*all).c_rgb[i] = 0;
+	// }
+	// (*all).does_paste_r = 0;
+	// (*all).does_paste_f = 0;
+	// (*all).does_paste_c = 0;
+	// (*all).nb_lines = 0;
+	// while (i < 6)
+	// 	(*all).nswe_s[i++] = 0;
+	// (*all).map = NULL;
+	// (*all).len_str_max = 0;
+	// (*all).player = 0;
+	// (*all).free_line = NULL;
+	// construct_t_mlx_move_sprite_wall(all);
+}
+
+/********************************************
+*	1.1.2. construct_t_mlx_move_sprite_wall	*
+*********************************************
+*/	
+
+// void	start_move_sprite_wall(t_mlx *all)
+// {
+	// (*all).dist_wall = NULL;
+	// (*all).sprite_data = NULL;
+	// (*all).move.a = 0;
+	// (*all).move.w = 0;
+	// (*all).move.d = 0;
+	// (*all).move.s = 0;
+	// (*all).move.arrow_l = 0;
+	// (*all).move.arrow_r = 0;
+// }
+
+/*****************************************
+*		1.1.1. construct_t_mlx_texture	 *
+******************************************
+*/
+
+void	construct_t_mlx_texture(t_mlx *all)
+{
+	// int	i;
+
+	(*all).mlx = NULL;
+	(*all).win = NULL;
+	(*all).mlx = mlx_init();
+	if (!(*all).mlx)
+	{
+		write(1, "Error\nmlx_init error.\n", 23);
+		exit (1);
+	}
+	// i = -1;
+	// while (++i < 5)
+	// {
+	// 	(*all).texture_nswe_s[i].img = NULL;
+	// 	(*all).texture_nswe_s[i].addr = NULL;
+	// }
+	// (*all).frame.img = NULL;
+}
+
+/*****************************************
+*		1.3.4.1.1. exit_clean   	     *
+******************************************
+*	Exit program. Clean exit.
+*/
+
+// int	exit_clean(t_mlx *all, int i, int ii)
+void    destruct_t_mlx(t_mlx *all)
+{
+	// int i;
+
+	// while (++i < 5)
+	// 	if ((*all).texture_nswe_s[i].img)
+	// 		mlx_destroy_image((*all).mlx, ((*all).texture_nswe_s[i].img));
+	// if ((*all).frame.img)
+	// 	mlx_destroy_image((*all).mlx, (*all).frame.img);
+	// if ((*all).free_line && (*all).free_line == (*all).line)
+	// 	(*all).free_line = NULL;
+
+	if (all->map)
+	{
+		// i = all->nb_map_lines;
+// 		while (i--)
+// 		{
+// printf("test delete 2 %d\n", i);
+
+// 			if (all->map[i])
+// 			{
+
+// printf("test qq delete 2 %s\n", all->map[i]);
+// 				free(all->map[i]);
+// printf("test delete 3\n");
+// 			}
+// printf("test delete 4\n");
+
+// 			all->map[i] = NULL;
+// 		}
+
+		free(all->map);
+		all->map = NULL;
+	}
+	ft_map_list_clear(&(all->map_begin), ft_map_list_delone);
+	if ((*all).line)
+		free((*all).line);
+	(*all).line = NULL;
+
+
+	// if ((*all).free_line)
+	// 	free((*all).free_line);
+	// (*all).free_line = NULL;
+	// if ((*all).dist_wall)
+	// 	free((*all).dist_wall);
+	// (*all).dist_wall = NULL;
+	// while (ii < (*all).nb_lines + 1 && ((*all).map && (*all).map[i]))
+	// 	free((*all).map[ii++]);
+	// if ((*all).map)
+	// 	free((*all).map);
+	// if ((*all).sprite_data)
+	// 	free((*all).sprite_data);
+	if ((*all).win)
+		mlx_destroy_window(all->mlx, all->win);
+	exit (1);
+}
