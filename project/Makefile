@@ -7,6 +7,7 @@ SRC 		= 						  	\
 				main.c 				  	\
 				init_all_construct.c 	\
 				valid_0.c valid_1.c	 	\
+				graphics/graphics_0_keys.c graphics/graphics_1_render.c
 
 SRC_LIB 	=	./lib_functions/lib_functions_0.c ./lib_functions/lib_functions_1.c
 SRC_GNL 	=	./gnl/get_next_line.c ./gnl/get_next_line_utils.c
@@ -44,7 +45,7 @@ MLX 		= 	-lm -lmlx -lXext -lX11
 MINILIBX 	= 	make -C mlx_linux
 endif
 
-%.o: %.c $(HEAD)
+%.o: %.c $(HEAD) 
 		$(CinO)
 
 all: $(NAME)

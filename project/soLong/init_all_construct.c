@@ -24,13 +24,17 @@ void	construct_t_mlx(t_mlx *all, char **av)
 	construct_t_mlx_texture(all);
 	all->collect = 0;
 	all->collect_total = 0;
+	all->steps = 0;
 
-	(*all).line = NULL;
-	(*all).map_begin = NULL;
-	(*all).map = NULL;
-	(*all).map_height = 0;
-	(*all).map_lenght = 0;
+	all->line = NULL;
+	all->map_begin = NULL;
+	all->map = NULL;
+	all->map_height = 0;
+	all->map_lenght = 0;
+	all->scale = BLOCK_SIZE;
 
+	ft_memset(&all->move, 0, sizeof(all->move));
+	ft_memset(&all->frame, 0, sizeof(all->frame));
 
 	// (*all).r_xy[0] = 0;
 	// (*all).r_xy[1] = 0;
@@ -103,7 +107,7 @@ void	construct_t_mlx_texture(t_mlx *all)
 */
 
 // int	exit_clean(t_mlx *all, int i, int ii)
-void    destruct_t_mlx(t_mlx *all)
+int    destruct_t_mlx(t_mlx *all)
 {
 	// int i;
 
@@ -155,7 +159,8 @@ void    destruct_t_mlx(t_mlx *all)
 	// 	free((*all).map);
 	// if ((*all).sprite_data)
 	// 	free((*all).sprite_data);
-	if ((*all).win)
+	if (all->win)
 		mlx_destroy_window(all->mlx, all->win);
 	exit (1);
+	return (0);
 }

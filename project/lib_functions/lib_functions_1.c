@@ -31,3 +31,14 @@ int	ft_strchr_int(const char *s, int c)
 		++i;
 	return (i);
 }
+
+
+void	*ft_memset(void *b, int c, size_t len)
+{
+	char	*bb;
+
+	bb = b;
+	while (len-- > 0)
+		*bb++ = (unsigned char)c;
+	return (b);
+}
