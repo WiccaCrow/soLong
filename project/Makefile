@@ -40,10 +40,10 @@ endif
 
 ifeq ($(OS),Linux)
 $(info Linux)
-CinO		=	$(CC) $(FLAGS) -g -I$(FOLDER) -I./mlx_linux -c $(@:.o=.c) -o $@ -L./mlx_linux $(MLX)
-SOLONG		=	$(CC) -g -I$(FOLDER) -I./mlx_linux -o $(NAME) $(OBJ) -L./mlx_linux $(MLX)
+CinO		=	$(CC) $(FLAGS) -g -I$(FOLDER) -I./mlx_linux2 -c $(@:.o=.c) -o $@ -L./mlx_linux2 $(MLX)
+SOLONG		=	$(CC) -g -I$(FOLDER) -I./mlx_linux2 -o $(NAME) $(OBJ) -L./mlx_linux2 $(MLX)
 MLX 		= 	-lm -lmlx -lXext -lX11
-MINILIBX 	= 	make -C mlx_linux
+MINILIBX 	= 	make -C mlx_linux2
 endif
 
 %.o: %.c $(HEAD)
