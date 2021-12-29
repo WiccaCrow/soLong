@@ -166,11 +166,19 @@ unsigned int	my_mlx_pix_take(t_img *map, int x, int y);
 void	my_mlx_pix_put(t_img *map, int x, int y, int color);
 
 // keys
-# define	KEY_LEFT_A 0
-# define	KEY_UP_W 13
-# define	KEY_RIGHT_D 2
-# define	KEY_DOWN_S 1
-# define	KEY_ESC 53
+#if defined(__APPLE__)
+	# define	KEY_LEFT_A 0
+	# define	KEY_UP_W 13
+	# define	KEY_RIGHT_D 2
+	# define	KEY_DOWN_S 1
+	# define	KEY_ESC 53
+#else
+	# define	KEY_LEFT_A 97
+	# define	KEY_UP_W 119
+	# define	KEY_RIGHT_D 100
+	# define	KEY_DOWN_S 115
+	# define	KEY_ESC 65307
+#endif
 
 # define	X11_EVENTS_KEYPRESS 2
 # define	X11_EVENTS_KEYREL 3

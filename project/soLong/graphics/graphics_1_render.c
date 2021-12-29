@@ -117,7 +117,7 @@ int	color_take(t_mlx *all, t_img *map, float i, int j)
 	int		x;
 
 if (all)
-;
+{}
 	scale = map->height / BLOCK_SIZE;
     y = map->height * (j / scale);
     x = map->width * (i / scale);
