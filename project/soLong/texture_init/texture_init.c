@@ -61,15 +61,15 @@ void	texture2(t_mlx *all, char *str, t_img *img_to_fill)
 	if (fd < 0)
 		error_occurse(all, ERROR_TEXTURE_OPEN);
 	close(fd);
-	// img_to_fill->img = mlx_xpm_file_to_image(all->mlx, str,
-	// 		&img_to_fill->width, &img_to_fill->height);
-	// if (img_to_fill->img)
-	// 	img_to_fill->addr = mlx_get_data_addr(img_to_fill,
-	// 			&img_to_fill->b_p_p,
-	// 			&img_to_fill->line_l,
-	// 			&img_to_fill->endian);
-	// if (!img_to_fill->addr)
-	// 	error_occurse(all, ERROR_TEXTURE_ADDR);
+	img_to_fill->img = mlx_xpm_file_to_image(all->mlx, str,
+			&img_to_fill->width, &img_to_fill->height);
+	if (img_to_fill->img)
+		img_to_fill->addr = mlx_get_data_addr(img_to_fill->img,
+				&img_to_fill->b_p_p,
+				&img_to_fill->line_l,
+				&img_to_fill->endian);
+	if (!img_to_fill->addr)
+		error_occurse(all, ERROR_TEXTURE_ADDR);
 
 	if (img_to_fill)
 	{}
