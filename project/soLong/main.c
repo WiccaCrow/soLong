@@ -25,6 +25,7 @@ int main(int argc, char **argv)
 		check_extention_argv(argv[1], ".ber");
     	construct_t_mlx(&all, argv);
 		parser_valid_argv1(&all);
+		paste_texture(&all);
 
 		// 	bonus_volume();
 		all.win = mlx_new_window(all.mlx, all.map_lenght * BLOCK_SIZE, all.map_height * BLOCK_SIZE, "W");

@@ -35,6 +35,8 @@ void	construct_t_mlx(t_mlx *all, char **av)
 
 	ft_memset(&all->move, 0, sizeof(all->move));
 	ft_memset(&all->frame, 0, sizeof(all->frame));
+	ft_memset(&all->texture_floor, 0, sizeof(all->texture_floor));
+	// all->texture_floor = NULL;
 
 	// (*all).r_xy[0] = 0;
 	// (*all).r_xy[1] = 0;
@@ -109,35 +111,8 @@ void	construct_t_mlx_texture(t_mlx *all)
 // int	exit_clean(t_mlx *all, int i, int ii)
 int    destruct_t_mlx(t_mlx *all)
 {
-	// int i;
-
-	// while (++i < 5)
-	// 	if ((*all).texture_nswe_s[i].img)
-	// 		mlx_destroy_image((*all).mlx, ((*all).texture_nswe_s[i].img));
-	// if ((*all).frame.img)
-	// 	mlx_destroy_image((*all).mlx, (*all).frame.img);
-	// if ((*all).free_line && (*all).free_line == (*all).line)
-	// 	(*all).free_line = NULL;
-
 	if (all->map)
 	{
-		// i = all->map_height;
-// 		while (i--)
-// 		{
-// printf("test delete 2 %d\n", i);
-
-// 			if (all->map[i])
-// 			{
-
-// printf("test qq delete 2 %s\n", all->map[i]);
-// 				free(all->map[i]);
-// printf("test delete 3\n");
-// 			}
-// printf("test delete 4\n");
-
-// 			all->map[i] = NULL;
-// 		}
-
 		free(all->map);
 		all->map = NULL;
 	}
@@ -146,19 +121,11 @@ int    destruct_t_mlx(t_mlx *all)
 		free((*all).line);
 	(*all).line = NULL;
 
+	if ((*all).texture_floor.img)
+			mlx_destroy_image((*all).mlx, (all->texture_floor.img));
+	if ((*all).frame.img)
+		mlx_destroy_image((*all).mlx, (*all).frame.img);
 
-	// if ((*all).free_line)
-	// 	free((*all).free_line);
-	// (*all).free_line = NULL;
-	// if ((*all).dist_wall)
-	// 	free((*all).dist_wall);
-	// (*all).dist_wall = NULL;
-	// while (ii < (*all).nb_lines + 1 && ((*all).map && (*all).map[i]))
-	// 	free((*all).map[ii++]);
-	// if ((*all).map)
-	// 	free((*all).map);
-	// if ((*all).sprite_data)
-	// 	free((*all).sprite_data);
 	if (all->win)
 		mlx_destroy_window(all->mlx, all->win);
 	exit (1);

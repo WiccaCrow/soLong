@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "soLong.h"
+void    drow_floor(t_mlx *all, int x, int y);
+int	color_take(t_mlx *all, t_img *map, float height, int width);
 
 int	render_next_frame(t_mlx *all)
 {
@@ -58,13 +60,15 @@ void	ft_mlx_one_bloke(t_mlx *all, int x, int y, char c)
 {
 	int	i;
 	int	j;
-	int	scale;
 	int	color;
 
-	scale = all->scale;
 	color = 0x00125618;
 	if (c == '1')
-		color = 0x00565618;
+    {
+		// color = 0x00565618;
+        drow_floor(all, x, y);
+        return ;
+    }
 	if (c == 'C')
 		color = 0x00789020;
 	if (c == 'P')
@@ -73,14 +77,65 @@ void	ft_mlx_one_bloke(t_mlx *all, int x, int y, char c)
 		color = 0x00709AAA;
 	i = 0;
 	j = 0;
-	while (i < scale)
+	while (i < all->scale)
 	{
 		j = -1;
-		while (++j < scale)
+		while (++j < all->scale)
 			my_mlx_pix_put(&(*all).frame, y * (*all).scale + i,
 				x * (*all).scale + j, color);
 		i++;
 	}
+}
+
+void    drow_floor(t_mlx *all, int x, int y)
+{
+    int	i;
+	int	j;
+    int color;
+
+	i = 0;
+	j = 0;
+	while (i < BLOCK_SIZE)
+	{
+		j = -1;
+		while (++j < BLOCK_SIZE)
+        {
+            // color = color_take(all, &all->texture_floor, i, j);
+            color = COLOR_SKIP;
+			my_mlx_pix_put(&all->frame, y * all->scale + i,
+				x * all->scale + j, color);
+        }
+		i++;
+	}
+}
+
+int	color_take(t_mlx *all, t_img *map, float i, int j)
+{
+	int		color;
+	float	scale;
+	int		y;
+	int		x;
+
+if (all)
+;
+	scale = map->height / BLOCK_SIZE;
+    y = map->height * (j / scale);
+    x = map->width * (i / scale);
+	color = my_mlx_pix_take(map, x, y);
+
+	// scale = all->texture_floor.height / BLOCK_SIZE;
+	// y = all->texture_floor.height + j * scale;
+    // x = all->texture_floor.width * (i / scale);
+	// color = my_mlx_pix_take(&all->texture_floor, x, y);
+	return (color);
+}
+
+unsigned int	my_mlx_pix_take(t_img *map, int x, int y)
+{
+	char	*dst;
+
+	dst = map->addr + (x * map->b_p_p / 8 + y * map->line_l);
+	return (*(unsigned int *)dst);
 }
 
 /*****************************************

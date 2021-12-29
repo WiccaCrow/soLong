@@ -7,7 +7,8 @@ SRC 		= 						  	\
 				main.c 				  	\
 				init_all_construct.c 	\
 				valid_0.c valid_1.c	 	\
-				graphics/graphics_0_keys.c graphics/graphics_1_render.c
+				graphics/graphics_0_keys.c graphics/graphics_1_render.c \
+				texture_init/texture_init.c 
 
 SRC_LIB 	=	./lib_functions/lib_functions_0.c ./lib_functions/lib_functions_1.c
 SRC_GNL 	=	./gnl/get_next_line.c ./gnl/get_next_line_utils.c
@@ -20,7 +21,7 @@ SRC_GNL 	=	./gnl/get_next_line.c ./gnl/get_next_line_utils.c
 # else
 FOLDER 		= ./soLong/
 SRC1 		= $(addprefix $(FOLDER), $(SRC))
-HEAD 		= ./soLong/
+HEAD 		= ./soLong/soLong.h
 # endif
 
 SRC1 		+= $(SRC_LIB)
@@ -45,7 +46,7 @@ MLX 		= 	-lm -lmlx -lXext -lX11
 MINILIBX 	= 	make -C mlx_linux
 endif
 
-%.o: %.c $(HEAD) 
+%.o: %.c $(HEAD)
 		$(CinO)
 
 all: $(NAME)

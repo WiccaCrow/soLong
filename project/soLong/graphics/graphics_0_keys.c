@@ -81,17 +81,27 @@ void	move_adws(t_mlx *all, int add_x, int add_y)
 		all->x_pl += add_x;
 		all->y_pl += add_y;
 		printf("Current number of movements is: %d\n", ++(all->steps));
-		if (all->map[(int)all->x_pl][(int)all->y_pl] == 'C')
-		{
-			all->map[(int)all->x_pl][(int)all->y_pl] = '0';
-			all->collect++;
-			all->collect_total--;
-		}
-		if (!all->collect_total && all->map[(int)all->x_pl][(int)all->y_pl] == 'E')
-		{
-			printf("You have collected all the collectibles and now you can go to the exit.\n");
-			destruct_t_mlx(all);
-		}
+		move_adws_collect(all);
+		move_adws_exit(all);
+	}
+}
+
+void	move_adws_collect(t_mlx *all)
+{
+	if (all->map[(int)all->x_pl][(int)all->y_pl] == 'C')
+	{
+		all->map[(int)all->x_pl][(int)all->y_pl] = '0';
+		all->collect++;
+		all->collect_total--;
+	}
+}
+
+void	move_adws_exit(t_mlx *all)
+{
+	if (!all->collect_total && all->map[(int)all->x_pl][(int)all->y_pl] == 'E')
+	{
+		printf("You have collected all the collectibles and now you can go to the exit.\n");
+		destruct_t_mlx(all);
 	}
 }
 

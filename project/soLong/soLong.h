@@ -13,11 +13,6 @@
 //					parser errors
 # define ERROR_OPEN "Error\n error opening file with map\n"
 # define ERROR_MALLOC "Error\n malloc error\n"
-
-# define ERROR_MLX_INIT "Error\n mlx_init error.\n"
-# define ERROR_MLX_NEW_IMAGE "Error\n mlx_new_image error.\n"
-# define ERROR_MLX_NEW_WINDOW "Error\nmlx_new_window error\n"
-
 # define ERROR_MAP_EXTENTION "Error\n wrong extension of 1st argument\n"
 # define ERROR_MAP_RECTANGULAR "Error\nThe map must be rectangular\n"
 # define ERROR_MAP_EMPTY "Error\n empty map\n"
@@ -25,6 +20,14 @@
 # define ERROR_MAP_SIMBOLS "Error\n invalid symbols in the map\n"
 # define ERROR_MAP_SIMBOLS_INCOMPLETE "Error\n the map character set is incomplete. Required characters: 01CEP\n"
 //					graphics errors
+# define ERROR_MLX_INIT "Error\n mlx_init error.\n"
+# define ERROR_MLX_NEW_IMAGE "Error\n mlx_new_image error.\n"
+# define ERROR_MLX_NEW_WINDOW "Error\nmlx_new_window error\n"
+# define ERROR_TEXTURE_FORMAT "Error\nTexture's format is bad.\n"
+# define ERROR_TEXTURE_REFILL "Error\nre-fill the textures.\n"
+# define ERROR_TEXTURE_OPEN "Error\nTexture. The file does not exist or is bad.\n"
+# define ERROR_TEXTURE_ADDR "Error\nmlx error (addr or img).\n"
+
 
 // move
 typedef struct s_move {
@@ -82,6 +85,7 @@ typedef struct s_mlx {
 	// frame
 	t_img			frame;
 	int				scale;
+	t_img			texture_floor;
 
 }	t_mlx;
 
@@ -132,6 +136,12 @@ void	error_occurse(t_mlx *all, char *msg);
 /******************************************************************************/
 
 // start
+void	paste_texture(t_mlx *all);
+void	texture1(t_mlx *all, char *str, char *extension, t_img *img_to_fill);
+void	texture2(t_mlx *all, char *str, t_img *img_to_fill);
+// void	texture1(t_mlx *all, char *str, char *extension);
+// void	texture2(t_mlx *all, char *str);
+
 void	graphics(t_mlx *all);
 
 // find start player position
@@ -142,11 +152,17 @@ int		key_press(int keycode, t_mlx *all);
 int		key_release(int keycode, t_mlx *all);
 
 // drow image and move
+//		render. start
 int		render_next_frame(t_mlx *all);
+//		move
 void 	move_correct(t_mlx *all);
 void	move_adws(t_mlx *all, int add_x, int add_y);
+void	move_adws_collect(t_mlx *all);
+void	move_adws_exit(t_mlx *all);
+//		drow
 void	drow_map(t_mlx *all);
 void	ft_mlx_one_bloke(t_mlx *all, int x, int y, char c);
+unsigned int	my_mlx_pix_take(t_img *map, int x, int y);
 void	my_mlx_pix_put(t_img *map, int x, int y, int color);
 
 // keys
@@ -161,15 +177,18 @@ void	my_mlx_pix_put(t_img *map, int x, int y, int color);
 # define	X11_EVENTS_EXIT 17
 
 // game settings
-# define	SIZE_BLOCK 64
-# define	FOV 60
-# define	SPEED 0.15
-# define	ROUND 0.04567
-# define	PL_HEIGHT 32
 # define	COLOR_SKIP 0x00FFFFFF
-# define	PL_HEIGHT_DOWN 15
-# define	PL_HEIGHT_UP 45
 // Scale
-# define BLOCK_SIZE 48
+# define 	BLOCK_SIZE 64
+// texture
+# define	TEXTURE_EXTENTION ".xpm"
+// # define	TEXTURE_EXTENTION ".png"
+// # define	TEXTURE_FLOOR "round.xpm"
+// # define	TEXTURE_FLOOR "2.xpm"
+
+// # define	TEXTURE_FLOOR "c.xpm"
+# define	TEXTURE_FLOOR "floor.xpm"
+// # define	TEXTURE_FLOOR "1.png"
+
 
 #endif
