@@ -12,7 +12,6 @@
 
 #include "soLong.h"
 void    drow_floor(t_mlx *all, int x, int y);
-int	color_take(t_mlx *all, t_img *map, float height, int width);
 
 int	render_next_frame(t_mlx *all)
 {
@@ -100,34 +99,14 @@ void    drow_floor(t_mlx *all, int x, int y)
 		j = -1;
 		while (++j < BLOCK_SIZE)
         {
-            // color = color_take(all, &all->texture_floor, i, j);
-            color = COLOR_SKIP;
+			color = all->texture_arrays.floor[i][j];
+            // color = color_take(&all->texture_floor, i, j);
+            // color = COLOR_SKIP;
 			my_mlx_pix_put(&all->frame, y * all->scale + i,
 				x * all->scale + j, color);
         }
 		i++;
 	}
-}
-
-int	color_take(t_mlx *all, t_img *map, float i, int j)
-{
-	int		color;
-	float	scale;
-	int		y;
-	int		x;
-
-if (all)
-{}
-	scale = map->height / BLOCK_SIZE;
-    y = map->height * (j / scale);
-    x = map->width * (i / scale);
-	color = my_mlx_pix_take(map, x, y);
-
-	// scale = all->texture_floor.height / BLOCK_SIZE;
-	// y = all->texture_floor.height + j * scale;
-    // x = all->texture_floor.width * (i / scale);
-	// color = my_mlx_pix_take(&all->texture_floor, x, y);
-	return (color);
 }
 
 unsigned int	my_mlx_pix_take(t_img *map, int x, int y)

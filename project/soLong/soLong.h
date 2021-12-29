@@ -28,6 +28,48 @@
 # define ERROR_TEXTURE_OPEN "Error\nTexture. The file does not exist or is bad.\n"
 # define ERROR_TEXTURE_ADDR "Error\nmlx error (addr or img).\n"
 
+// keys
+#if defined(__APPLE__)
+	# define	KEY_LEFT_A 0
+	# define	KEY_UP_W 13
+	# define	KEY_RIGHT_D 2
+	# define	KEY_DOWN_S 1
+	# define	KEY_ESC 53
+#else
+	# define	KEY_LEFT_A 97
+	# define	KEY_UP_W 119
+	# define	KEY_RIGHT_D 100
+	# define	KEY_DOWN_S 115
+	# define	KEY_ESC 65307
+#endif
+
+# define	X11_EVENTS_KEYPRESS 2
+# define	X11_EVENTS_KEYREL 3
+# define	X11_EVENTS_EXIT 17
+
+// game settings
+# define	COLOR_SKIP 0x00FFFFFF
+// Scale
+# define 	BLOCK_SIZE 32
+// texture
+# define	TEXTURE_EXTENTION ".xpm"
+// # define	TEXTURE_EXTENTION ".png"
+// # define	TEXTURE_FLOOR "round.xpm"
+# define	TEXTURE_FLOOR "2.xpm"
+
+// # define	TEXTURE_FLOOR "c.xpm"
+// # define	TEXTURE_FLOOR "floor.xpm"
+// # define	TEXTURE_FLOOR "1.png"
+
+// textures
+typedef struct s_texture {
+	int	floor[BLOCK_SIZE][BLOCK_SIZE];
+	int	wall[BLOCK_SIZE][BLOCK_SIZE];
+	int	collect[BLOCK_SIZE][BLOCK_SIZE];
+	int	player[BLOCK_SIZE][BLOCK_SIZE];
+	int	e_exit[BLOCK_SIZE][BLOCK_SIZE];
+}	t_img_array;
+
 
 // move
 typedef struct s_move {
@@ -86,7 +128,7 @@ typedef struct s_mlx {
 	t_img			frame;
 	int				scale;
 	t_img			texture_floor;
-
+	t_img_array		texture_arrays;//memset0
 }	t_mlx;
 
 /******************************************************************************/
@@ -137,10 +179,10 @@ void	error_occurse(t_mlx *all, char *msg);
 
 // start
 void	paste_texture(t_mlx *all);
-void	texture1(t_mlx *all, char *str, char *extension, t_img *img_to_fill);
-void	texture2(t_mlx *all, char *str, t_img *img_to_fill);
-// void	texture1(t_mlx *all, char *str, char *extension);
-// void	texture2(t_mlx *all, char *str);
+void	texture1(t_mlx *all, char *str, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE]);
+void	texture2(t_mlx *all, char *str, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE]);
+void	fill_img_array(int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], t_img *img_to_fill);
+int		color_take(t_img *map, float i,float j);
 
 void	graphics(t_mlx *all);
 
@@ -164,39 +206,5 @@ void	drow_map(t_mlx *all);
 void	ft_mlx_one_bloke(t_mlx *all, int x, int y, char c);
 unsigned int	my_mlx_pix_take(t_img *map, int x, int y);
 void	my_mlx_pix_put(t_img *map, int x, int y, int color);
-
-// keys
-#if defined(__APPLE__)
-	# define	KEY_LEFT_A 0
-	# define	KEY_UP_W 13
-	# define	KEY_RIGHT_D 2
-	# define	KEY_DOWN_S 1
-	# define	KEY_ESC 53
-#else
-	# define	KEY_LEFT_A 97
-	# define	KEY_UP_W 119
-	# define	KEY_RIGHT_D 100
-	# define	KEY_DOWN_S 115
-	# define	KEY_ESC 65307
-#endif
-
-# define	X11_EVENTS_KEYPRESS 2
-# define	X11_EVENTS_KEYREL 3
-# define	X11_EVENTS_EXIT 17
-
-// game settings
-# define	COLOR_SKIP 0x00FFFFFF
-// Scale
-# define 	BLOCK_SIZE 64
-// texture
-# define	TEXTURE_EXTENTION ".xpm"
-// # define	TEXTURE_EXTENTION ".png"
-// # define	TEXTURE_FLOOR "round.xpm"
-// # define	TEXTURE_FLOOR "2.xpm"
-
-// # define	TEXTURE_FLOOR "c.xpm"
-# define	TEXTURE_FLOOR "floor.xpm"
-// # define	TEXTURE_FLOOR "1.png"
-
 
 #endif
