@@ -13,16 +13,16 @@ SRC 		= 						  	\
 SRC_LIB 	=	./lib_functions/lib_functions_0.c ./lib_functions/lib_functions_1.c
 SRC_GNL 	=	./gnl/get_next_line.c ./gnl/get_next_line_utils.c
 
-# ifdef MAKE_BONUS
-# FOLDER = ./soLong_bonus/
-# SRC1 = $(addprefix $(FOLDER), $(SRC))
-# SRC1 += $(addprefix $(FOLDER), graphic/bonus_correct_move.c graphic/bonus_itoa.c graphic/bonus_drow_map.c main_3_start_all.c)
-# HEAD = ./soLong_bonus/soLong.h
-# else
+ifdef MAKE_BONUS
+FOLDER = ./soLong_bonus/
+SRC1 = $(addprefix $(FOLDER), $(SRC))
+SRC1 += $(addprefix $(FOLDER), sprites_go/sprites_go.c sprites_go/sprites_go_move.c sprites_go/sprites_go_drow.c)
+HEAD = ./soLong_bonus/soLong.h
+else
 FOLDER 		= ./soLong/
 SRC1 		= $(addprefix $(FOLDER), $(SRC))
 HEAD 		= ./soLong/soLong.h
-# endif
+endif
 
 SRC1 		+= $(SRC_LIB)
 SRC1 		+= $(SRC_GNL)
@@ -51,7 +51,7 @@ endif
 
 all: $(NAME)
 
-# bonus: ; $(MAKE) MAKE_BONUS=0 all
+bonus: ; $(MAKE) MAKE_BONUS=0 all
 
 
 $(NAME): $(OBJ)
@@ -59,12 +59,12 @@ $(NAME): $(OBJ)
 		$(SOLONG)
 
 clean: ; rm -rf $(OBJ) ; make clean -C mlx
-# cleanbonus: ; $(MAKE) MAKE_BONUS=0 clean
+cleanbonus: ; $(MAKE) MAKE_BONUS=0 clean
 
 fclean:	clean ; rm -rf $(NAME)
-# fcleanbonus: ; $(MAKE) MAKE_BONUS=0 clean ; rm -rf $(NAME)
+fcleanbonus: ; $(MAKE) MAKE_BONUS=0 clean ; rm -rf $(NAME)
 
 re: fclean all
-# rebonus: ; $(MAKE) MAKE_BONUS=0 fclean all
+rebonus: ; $(MAKE) MAKE_BONUS=0 fclean all
 
-# .PHONY: all clean fclean re bonus cleanbonus fcleanbonus rebonus
+.PHONY: all clean fclean re bonus cleanbonus fcleanbonus rebonus
