@@ -26,7 +26,7 @@ void	graphics(t_mlx *all)
 
 	mlx_hook(all->win, X11_EVENTS_KEYPRESS, 1L << 0, key_press, all);
 	mlx_hook(all->win, X11_EVENTS_KEYREL, 1L << 1, key_release, all);
-	mlx_hook(all->win, X11_EVENTS_EXIT, 1L << 0, destruct_t_mlx, all);
+	mlx_hook(all->win, X11_EVENTS_EXIT, 1L << 0, ft_exit_0, all);
 	mlx_loop_hook(all->mlx, render_next_frame, all);
 	mlx_loop((*all).mlx);
 
@@ -45,7 +45,7 @@ int	key_press(int keycode, t_mlx *all)
 	if (keycode == KEY_DOWN_S || keycode == KEY_DOWN_ARROW)
 		(*all).move.s = 1;
 	if (keycode == KEY_ESC)
-		destruct_t_mlx(all);
+		ft_exit_0(all);
 	return (keycode);
 }
 
@@ -101,7 +101,7 @@ void	move_adws_exit(t_mlx *all)
 	if (!all->collect_total && all->map[(int)all->x_pl][(int)all->y_pl] == 'E')
 	{
 		printf("You have collected all the collectibles and now you can go to the exit.\n");
-		destruct_t_mlx(all);
+		ft_exit_0(all);
 	}
 }
 

@@ -93,3 +93,15 @@ int    destruct_t_mlx(t_mlx *all)
 		mlx_destroy_window(all->mlx, all->win);
 	return (0);
 }
+
+void	ft_exit_1(t_mlx *all)
+{
+	destruct_t_mlx(all);
+	exit(1);
+}
+
+int	ft_exit_0(t_mlx *all)
+{
+	destruct_t_mlx(all);
+	exit(1);
+}

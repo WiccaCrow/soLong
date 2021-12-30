@@ -158,6 +158,8 @@ void			*ft_memset(void *b, int c, size_t len);
 void    construct_t_mlx(t_mlx *all, char **av);
 void	construct_t_mlx_texture(t_mlx *all);
 int	    destruct_t_mlx(t_mlx *all);
+int		ft_exit_0(t_mlx *all);
+void	ft_exit_1(t_mlx *all);
 
 
 // validate and fill map array

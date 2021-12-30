@@ -57,6 +57,6 @@ int main(int argc, char **argv)
 void	error_occurse(t_mlx *all, char *msg)
 {
 	write(STDOUT_FILENO, msg, ft_strlen(msg));
-	destruct_t_mlx(all);
+	ft_exit_1(all);
 	exit(1);
 }
