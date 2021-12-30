@@ -36,13 +36,13 @@ void	graphics(t_mlx *all)
 
 int	key_press(int keycode, t_mlx *all)
 {
-	if (keycode == KEY_LEFT_A)
+	if (keycode == KEY_LEFT_A || keycode == KEY_LEFT_ARROW)
 		(*all).move.a = 1;
-	if (keycode == KEY_UP_W)
+	if (keycode == KEY_UP_W || keycode == KEY_UP_ARROW)
 		(*all).move.w = 1;
-	if (keycode == KEY_RIGHT_D)
+	if (keycode == KEY_RIGHT_D || keycode == KEY_RIGHT_ARROW)
 		(*all).move.d = 1;
-	if (keycode == KEY_DOWN_S)
+	if (keycode == KEY_DOWN_S || keycode == KEY_DOWN_ARROW)
 		(*all).move.s = 1;
 	if (keycode == KEY_ESC)
 		destruct_t_mlx(all);
@@ -51,13 +51,13 @@ int	key_press(int keycode, t_mlx *all)
 
 int	key_release(int keycode, t_mlx *all)
 {
-	if (keycode == KEY_LEFT_A)
+	if (keycode == KEY_LEFT_A || keycode == KEY_LEFT_ARROW)
 		(*all).move.a = 0;
-	if (keycode == KEY_UP_W)
+	if (keycode == KEY_UP_W || keycode == KEY_UP_ARROW)
 		(*all).move.w = 0;
-	if (keycode == KEY_RIGHT_D)
+	if (keycode == KEY_RIGHT_D || keycode == KEY_RIGHT_ARROW)
 		(*all).move.d = 0;
-	if (keycode == KEY_DOWN_S)
+	if (keycode == KEY_DOWN_S || keycode == KEY_DOWN_ARROW)
 		(*all).move.s = 0;
 	return (keycode);
 }

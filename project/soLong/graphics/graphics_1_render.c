@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "soLong.h"
-void    drow_floor(t_mlx *all, int x, int y);
+// void    drow_floor(t_mlx *all, int x, int y);
 
 int	render_next_frame(t_mlx *all)
 {
@@ -24,11 +24,6 @@ int	render_next_frame(t_mlx *all)
 	drow_map(all);
 	return (0);
 }
-
-/*
-* COLOR_SPRITE = 0x00125618
-* COLOR_WALLS = 0x00909090
-*/
 
 void	drow_map(t_mlx *all)
 {
@@ -57,36 +52,28 @@ void	drow_map(t_mlx *all)
 
 void	ft_mlx_one_bloke(t_mlx *all, int x, int y, char c)
 {
-	int	i;
-	int	j;
-	int	color;
-
-	color = 0x00125618;
+	if (c == '0')
+		drow_floor(all, x, y, all->texture_arrays.floor, -1);
 	if (c == '1')
     {
-		// color = 0x00565618;
-        drow_floor(all, x, y);
-        return ;
+		drow_floor(all, x, y, all->texture_arrays.floor, -1);
+        drow_floor(all, x, y, all->texture_arrays.wall, 0x00FFFFFF);
     }
 	if (c == 'C')
-		color = 0x00789020;
+    {
+		drow_floor(all, x, y, all->texture_arrays.floor, -1);
+        drow_floor(all, x, y, all->texture_arrays.collect, 0x00F7F7F7);
+    }
 	if (c == 'P')
-		color = 0x0000FFFF;
+        drow_floor(all, x, y, all->texture_arrays.player, 0x00FFFFFF);
     if (c == 'E')
-		color = 0x00709AAA;
-	i = 0;
-	j = 0;
-	while (i < all->scale)
-	{
-		j = -1;
-		while (++j < all->scale)
-			my_mlx_pix_put(&(*all).frame, y * (*all).scale + i,
-				x * (*all).scale + j, color);
-		i++;
-	}
+    {
+		drow_floor(all, x, y, all->texture_arrays.floor, -1);
+        drow_floor(all, x, y, all->texture_arrays.e_exit, 0x00FFFFFF);
+    }
 }
 
-void    drow_floor(t_mlx *all, int x, int y)
+void    drow_floor(t_mlx *all, int x, int y, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], int color_skip)
 {
     int	i;
 	int	j;
@@ -99,11 +86,12 @@ void    drow_floor(t_mlx *all, int x, int y)
 		j = -1;
 		while (++j < BLOCK_SIZE)
         {
-			color = all->texture_arrays.floor[i][j];
+			color = array_to_fill[i][j];
             // color = color_take(&all->texture_floor, i, j);
             // color = COLOR_SKIP;
-			my_mlx_pix_put(&all->frame, y * all->scale + i,
-				x * all->scale + j, color);
+			if (color != color_skip)
+				my_mlx_pix_put(&all->frame, y * all->scale + i,
+					x * all->scale + j, color);
         }
 		i++;
 	}

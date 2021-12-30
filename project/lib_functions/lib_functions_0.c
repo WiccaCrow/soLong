@@ -91,7 +91,7 @@ t_map_list	*ft_map_list_last(t_map_list *lst)
  *		The function clear list.
 */
 
-void	ft_map_list_clear(t_map_list **lst, void (*del)(t_map_list*))
+void	ft_map_list_clear(t_mlx *all, t_map_list **lst)
 {
 	t_map_list	*ptr;
 
@@ -99,7 +99,7 @@ void	ft_map_list_clear(t_map_list **lst, void (*del)(t_map_list*))
 	while (ptr)
 	{
 		ptr = (*lst)->next;
-		del(*lst);
+		ft_map_list_delone(all, *lst);
 		*lst = ptr;
 	}
 	if (lst)
@@ -115,9 +115,10 @@ void	ft_map_list_clear(t_map_list **lst, void (*del)(t_map_list*))
  *		The function clear one element t_map_list.
 */
 
-void	ft_map_list_delone(t_map_list *lst)
+void	ft_map_list_delone(t_mlx *all, t_map_list *lst)
 {
 	free(lst->line);
 	lst->line = NULL;
+	all->line = NULL;
 	free(lst);
 }

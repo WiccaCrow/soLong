@@ -18,6 +18,7 @@
 # define ERROR_MAP_EMPTY "Error\n empty map\n"
 # define ERROR_MAP_CLOSED "Error\n The map must be closed/surrounded by wall\n"
 # define ERROR_MAP_SIMBOLS "Error\n invalid symbols in the map\n"
+# define ERROR_MAP_PLAYER "Error\n too many players\n"
 # define ERROR_MAP_SIMBOLS_INCOMPLETE "Error\n the map character set is incomplete. Required characters: 01CEP\n"
 //					graphics errors
 # define ERROR_MLX_INIT "Error\n mlx_init error.\n"
@@ -40,6 +41,10 @@
 	# define	KEY_UP_W 119
 	# define	KEY_RIGHT_D 100
 	# define	KEY_DOWN_S 115
+	# define	KEY_LEFT_ARROW 65361
+	# define	KEY_UP_ARROW 65362
+	# define	KEY_RIGHT_ARROW 65363
+	# define	KEY_DOWN_ARROW 65364
 	# define	KEY_ESC 65307
 #endif
 
@@ -50,16 +55,14 @@
 // game settings
 # define	COLOR_SKIP 0x00FFFFFF
 // Scale
-# define 	BLOCK_SIZE 32
+# define 	BLOCK_SIZE 48
 // texture
 # define	TEXTURE_EXTENTION ".xpm"
-// # define	TEXTURE_EXTENTION ".png"
-// # define	TEXTURE_FLOOR "round.xpm"
-# define	TEXTURE_FLOOR "2.xpm"
-
-// # define	TEXTURE_FLOOR "c.xpm"
-// # define	TEXTURE_FLOOR "floor.xpm"
-// # define	TEXTURE_FLOOR "1.png"
+# define	TEXTURE_FLOOR "./textures/grass-1.xpm"
+# define	TEXTURE_WALL "./textures/wall_1.xpm"
+# define	TEXTURE_COLLECT "./textures/texture_ring.xpm"
+# define	TEXTURE_EXIT "./textures/1.xpm"
+# define	TEXTURE_PL_R_1 "./textures/texture_pirate_1.xpm"
 
 // textures
 typedef struct s_texture {
@@ -120,6 +123,7 @@ typedef struct s_mlx {
 	int				steps;
 
 	// player position and move
+	int				player_total;
 	float			x_pl;
 	float			y_pl;
 	t_move			move;
@@ -129,6 +133,7 @@ typedef struct s_mlx {
 	int				scale;
 	t_img			texture_floor;
 	t_img_array		texture_arrays;//memset0
+
 }	t_mlx;
 
 /******************************************************************************/
@@ -140,8 +145,8 @@ typedef struct s_mlx {
 t_map_list		*ft_map_list_new(t_mlx *all, char *line);
 t_map_list		*ft_map_list_last(t_map_list *lst);
 void			ft_map_list_add_back(t_map_list **lst, t_map_list *new);
-void			ft_map_list_clear(t_map_list **lst, void (*del)(t_map_list*));
-void			ft_map_list_delone(t_map_list *lst);
+void			ft_map_list_clear(t_mlx *all, t_map_list **lst);
+void			ft_map_list_delone(t_mlx *all, t_map_list *lst);
 //		file: lib_functions/lib_functions_1.c
 int				ft_strchr_int(const char *s, int c);
 void			*ft_memset(void *b, int c, size_t len);
@@ -181,6 +186,7 @@ void	error_occurse(t_mlx *all, char *msg);
 void	paste_texture(t_mlx *all);
 void	texture1(t_mlx *all, char *str, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE]);
 void	texture2(t_mlx *all, char *str, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE]);
+void    drow_floor(t_mlx *all, int x, int y, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], int color_skip);
 void	fill_img_array(int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], t_img *img_to_fill);
 int		color_take(t_img *map, float i,float j);
 

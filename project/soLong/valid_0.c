@@ -157,7 +157,11 @@ void	valid_fill_map(t_mlx *all, char *simbols)
 		valid_one_char(all, simbols, all->line[i]);
 		if (all->line[i] == 'C')
 			++all->collect_total;
+		if (all->line[i] == 'P')
+			++all->player_total;
 	}
+	if (all->player_total > 1)
+		error_occurse(all, ERROR_MAP_PLAYER);
 	if (all->line[0] != '1' || all->line[ft_strlen(all->line) - 1] != '1')
 		error_occurse(all, ERROR_MAP_CLOSED);
 }

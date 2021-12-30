@@ -14,11 +14,11 @@
 
 void	paste_texture(t_mlx *all)
 {
-	texture1(all, TEXTURE_FLOOR, all->texture_arrays.collect);
-	texture1(all, TEXTURE_FLOOR, all->texture_arrays.e_exit);
+	texture1(all, TEXTURE_COLLECT, all->texture_arrays.collect);
+	texture1(all, TEXTURE_EXIT, all->texture_arrays.e_exit);
 	texture1(all, TEXTURE_FLOOR, all->texture_arrays.floor);
-	texture1(all, TEXTURE_FLOOR, all->texture_arrays.player);
-	texture1(all, TEXTURE_FLOOR, all->texture_arrays.wall);
+	texture1(all, TEXTURE_PL_R_1, all->texture_arrays.player);
+	texture1(all, TEXTURE_WALL, all->texture_arrays.wall);
 }
 
 /*****************************************
@@ -84,7 +84,6 @@ void	fill_img_array(int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], t_img *img_to_fil
 {
 	int	i;
 	int	j;
-    int color;
 
 	i = 0;
 	j = 0;
@@ -92,19 +91,17 @@ void	fill_img_array(int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], t_img *img_to_fil
 	{
 		j = -1;
 		while (++j < BLOCK_SIZE)
-        {
-            color = color_take(img_to_fill, i, j);
-            // color = COLOR_SKIP;
-			array_to_fill[i][j] = color;
-        }
+			array_to_fill[i][j] = color_take(img_to_fill, i, j);
 		i++;
 	}
 }
 
 int	color_take(t_img *map, float i,float j)
 {
-	float	scale;
+	int		x;
+	int		y;
 
-	scale = (float)map->height / (float)BLOCK_SIZE;
-	return (my_mlx_pix_take(map, i * scale, j * scale));
+	x = j * (float)map->height / (float)BLOCK_SIZE;
+	y = i * (float)map->width / (float)BLOCK_SIZE;
+	return (my_mlx_pix_take(map, y, x));
 }
