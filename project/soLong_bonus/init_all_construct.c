@@ -23,6 +23,8 @@ void	construct_t_mlx(t_mlx *all, char **av)
 	all->collect = 0;
 	all->collect_total = 0;
 	all->steps = 0;
+	all->nb_texture_pl = 1;
+	all->player_total = 0;
 
 	all->line = NULL;
 	all->map_begin = NULL;
@@ -31,7 +33,6 @@ void	construct_t_mlx(t_mlx *all, char **av)
 	all->map_lenght = 0;
 	all->scale = BLOCK_SIZE;
 
-	all->nb_texture_pl = 1;
 	all->sprites = NULL;
 
 	ft_memset(&all->move, 0, sizeof(all->move));
@@ -39,22 +40,6 @@ void	construct_t_mlx(t_mlx *all, char **av)
 	ft_memset(&all->texture_arrays, 0, sizeof(all->texture_arrays));
 }
 
-/********************************************
-*	1.1.2. construct_t_mlx_move_sprite_wall	*
-*********************************************
-*/	
-
-// void	start_move_sprite_wall(t_mlx *all)
-// {
-	// (*all).dist_wall = NULL;
-	// (*all).sprite_data = NULL;
-	// (*all).move.a = 0;
-	// (*all).move.w = 0;
-	// (*all).move.d = 0;
-	// (*all).move.s = 0;
-	// (*all).move.arrow_l = 0;
-	// (*all).move.arrow_r = 0;
-// }
 
 /*****************************************
 *		1.1.1. construct_t_mlx_texture	 *
