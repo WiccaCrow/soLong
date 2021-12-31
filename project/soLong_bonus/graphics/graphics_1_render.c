@@ -47,6 +47,8 @@ void	drow_map(t_mlx *all)
 	}
 	ft_mlx_one_bloke(all, (*all).x_pl, (*all).y_pl, 'P');
 	sprites_go_drow(all);
+	counters_print_img(all);
+	win_img(all);
 	mlx_put_image_to_window((*all).mlx, (*all).win, (*all).frame.img, 0, 0);
 	mlx_destroy_image((*all).mlx, (*all).frame.img);
 	(*all).frame.img = NULL;
@@ -59,25 +61,25 @@ void	ft_mlx_one_bloke(t_mlx *all, int x, int y, char c)
 	if (c == '1')
     {
 		drow_floor(all, x, y, all->texture_arrays.floor, -1);
-        drow_floor(all, x, y, all->texture_arrays.wall, 0x00FFFFFF);
+        drow_floor(all, x, y, all->texture_arrays.wall, COLOR_SKIP);
     }
 	if (c == 'C')
     {
 		drow_floor(all, x, y, all->texture_arrays.floor, -1);
-        drow_floor(all, x, y, all->texture_arrays.collect, 0x00FFFFFF);
+        drow_floor(all, x, y, all->texture_arrays.collect, COLOR_SKIP);
     }
 	if (c == 'P')
-        drow_floor(all, x, y, all->texture_arrays.player[all->nb_texture_pl], 0x00FFFFFF);
+        drow_floor(all, x, y, all->texture_arrays.player[all->nb_texture_pl], COLOR_SKIP);
     if (c == 'E')
     {
 		drow_floor(all, x, y, all->texture_arrays.floor, -1);
-        drow_floor(all, x, y, all->texture_arrays.e_exit, 0x00FFFFFF);
+        drow_floor(all, x, y, all->texture_arrays.e_exit, COLOR_SKIP);
     }
 	if (c == 's')
 	{
 		drow_floor(all, x, y, all->texture_arrays.floor, -1);
 		gettimeofday(&all->tv, NULL);
-        drow_floor(all, x, y, all->texture_arrays.sprite_s[all->tv.tv_sec % 2], 0x00FFFFFF);
+        drow_floor(all, x, y, all->texture_arrays.sprite_s[all->tv.tv_sec % 2], COLOR_SKIP);
 	}
 }
 
@@ -123,4 +125,31 @@ void	my_mlx_pix_put(t_img *map, int x, int y, int color)
 
 	dst = map->addr + (x * map->b_p_p / 8 + y * map->line_l);
 	*(unsigned int *)dst = color;
+}
+
+void	win_img(t_mlx *all)
+{
+	int	i;
+	int	j;
+    int color;
+	int block_size;
+
+	if (all->collect == all->collect_total)
+	{
+		i = 0;
+		j = 0;
+		block_size = BLOCK_SIZE * 4;
+		while (i < block_size)
+		{
+			j = -1;
+			while (++j < BLOCK_SIZE)
+			{
+				color = all->texture_arrays.won[i][j];
+				if (color != COLOR_SKIP)
+					my_mlx_pix_put(&all->frame, all->map_lenght / 2 * all->scale - 2 * all->scale + i,
+						all->map_height / 2 * all->scale - all->scale / 2 + j, color);
+			}
+			i++;
+		}
+	}
 }

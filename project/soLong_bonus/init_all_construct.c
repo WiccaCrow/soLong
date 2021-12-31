@@ -106,5 +106,7 @@ void	ft_exit_1(t_mlx *all)
 int	ft_exit_0(t_mlx *all)
 {
 	destruct_t_mlx(all);
+	// system("killall afplay");
+	system("killall aplay");
 	exit(1);
 }

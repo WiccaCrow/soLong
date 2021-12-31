@@ -75,10 +75,30 @@ void	move_adws(t_mlx *all, int add_x, int add_y)
 	{
 		all->x_pl += add_x;
 		all->y_pl += add_y;
-		printf("Current number of movements is: %d\n", ++(all->steps));
+		move_adws_death(all);
 		move_adws_collect(all);
 		move_adws_exit(all);
 	}
+}
+
+void	move_adws_death(t_mlx *all)
+{
+	int	n;
+
+	n = -1;
+	while (++n < all->nb_sprites)
+	{
+		if ((int)all->x_pl == all->sprites[n].x && (int)all->y_pl == all->sprites[n].y)
+			game_over(all);
+	}
+	if (all->map[(int)all->x_pl][(int)all->y_pl] == 's')
+		game_over(all);
+}
+
+void	game_over(t_mlx *all)
+{
+	write(STDOUT_FILENO, "GAME OVER\n", 10);
+	ft_exit_0(all);
 }
 
 void	move_adws_collect(t_mlx *all)
@@ -87,13 +107,12 @@ void	move_adws_collect(t_mlx *all)
 	{
 		all->map[(int)all->x_pl][(int)all->y_pl] = '0';
 		all->collect++;
-		all->collect_total--;
 	}
 }
 
 void	move_adws_exit(t_mlx *all)
 {
-	if (!all->collect_total && all->map[(int)all->x_pl][(int)all->y_pl] == 'E')
+	if (all->collect_total == all->collect && all->map[(int)all->x_pl][(int)all->y_pl] == 'E')
 	{
 		printf("You have collected all the collectibles and now you can go to the exit.\n");
 		ft_exit_0(all);

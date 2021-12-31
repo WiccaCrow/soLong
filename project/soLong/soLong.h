@@ -58,11 +58,14 @@
 # define 	BLOCK_SIZE 48
 // texture
 # define	TEXTURE_EXTENTION ".xpm"
+// # define	TEXTURE_FLOOR "./textures/floor_grass.xpm"
 # define	TEXTURE_FLOOR "./textures/grass-1.xpm"
 # define	TEXTURE_WALL "./textures/wall_1.xpm"
 # define	TEXTURE_COLLECT "./textures/texture_ring.xpm"
 # define	TEXTURE_EXIT "./textures/1.xpm"
-# define	TEXTURE_PL_R_1 "./textures/texture_pirate_1.xpm"
+# define	TEXTURE_PL_R_1 "./textures/texture_pirate_1-r.xpm"
+// # define	TEXTURE_WALL "./textures/wall_trees.xpm"
+
 
 // textures
 typedef struct s_texture {

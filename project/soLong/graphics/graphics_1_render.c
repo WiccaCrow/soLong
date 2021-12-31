@@ -62,7 +62,7 @@ void	ft_mlx_one_bloke(t_mlx *all, int x, int y, char c)
 	if (c == 'C')
     {
 		drow_floor(all, x, y, all->texture_arrays.floor, -1);
-        drow_floor(all, x, y, all->texture_arrays.collect, 0x00F7F7F7);
+        drow_floor(all, x, y, all->texture_arrays.collect, 0x00FFFFFF);
     }
 	if (c == 'P')
         drow_floor(all, x, y, all->texture_arrays.player, 0x00FFFFFF);

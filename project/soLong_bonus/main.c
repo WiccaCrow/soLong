@@ -27,11 +27,10 @@ int main(int argc, char **argv)
 		parser_valid_argv1(&all);
 		paste_texture(&all);
 		paste_sprites_go(&all);
-
-		// 	bonus_volume();
 		all.win = mlx_new_window(all.mlx, all.map_lenght * BLOCK_SIZE, all.map_height * BLOCK_SIZE, "W");
 		if (all.win == NULL)
 			error_occurse(&all, ERROR_MLX_NEW_WINDOW);
+		bonus_volume();
 		graphics(&all);
     	destruct_t_mlx(&all);
 	}
@@ -60,4 +59,10 @@ void	error_occurse(t_mlx *all, char *msg)
 	write(STDOUT_FILENO, msg, ft_strlen(msg));
 	ft_exit_1(all);
 	exit(1);
+}
+
+void	bonus_volume()
+{
+	// system("afplay --volume 1 2.wav &");
+	system("aplay 2.wav &");
 }
