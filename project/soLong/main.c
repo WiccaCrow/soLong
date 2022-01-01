@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 				all.map_height * BLOCK_SIZE, "W");
 		if (all.win == NULL)
 			error_occurse(&all, ERROR_MLX_NEW_WINDOW);
-		// graphics(&all);
+		graphics(&all);
 		destruct_t_mlx(&all);
 	}
 	else

@@ -105,14 +105,6 @@ void    drow_floor(t_mlx *all, int x, int y, int array_to_fill[BLOCK_SIZE][BLOCK
 	}
 }
 
-unsigned int	my_mlx_pix_take(t_img *map, int x, int y)
-{
-	char	*dst;
-
-	dst = map->addr + (x * map->b_p_p / 8 + y * map->line_l);
-	return (*(unsigned int *)dst);
-}
-
 /*****************************************
 *		1.4.6.2.1.3.2. my_mlx_pix_put    *
 ******************************************

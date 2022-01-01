@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "soLong.h"
+#include "../soLong.h"
 
 /*****************************************
 *       check_extention_argv             *
@@ -69,9 +69,6 @@ void	parser_valid_argv1(t_mlx *all)
 		close (all->fd);
 	if (gnl < 0)
 		error_occurse(all, ERROR_OPEN);
-	if (all->map_lenght != ft_strlen(all->line))
-		error_occurse(all, ERROR_MAP_RECTANGULAR);
-	all->line = NULL;
 	close (all->fd);
 	map_array_fill(all);
 	checks_character_sets(all);
@@ -102,15 +99,15 @@ int	map_check_and_fill(t_mlx *all)
 	all->map_lenght = ft_strlen(all->line);
 	valid_empty_map(all, gnl, all->map_lenght);
 	valid_fill_map(all, "1");
-	while (gnl > 0 && all->map_lenght == ft_strlen(all->line))
+	while (gnl > 0)
 	{
-		map_add_list(all, all->line);
 		valid_fill_map(all, MAP_SIMBOLS);
+		map_add_list(all);
 		all->line = NULL;
 		gnl = get_next_line(all->fd, &all->line);
 	}
-	map_add_list(all, all->line);
 	valid_fill_map(all, "1");
+	map_add_list(all);
 	return (gnl);
 }
 
@@ -160,6 +157,8 @@ void	valid_fill_map(t_mlx *all, char *simbols)
 		if (all->line[i] == 'P')
 			++all->player_total;
 	}
+	if (all->map_lenght != ft_strlen(all->line))
+		error_occurse(all, ERROR_MAP_RECTANGULAR);
 	if (all->player_total > 1)
 		error_occurse(all, ERROR_MAP_PLAYER);
 	if (all->line[0] != '1' || all->line[ft_strlen(all->line) - 1] != '1')

@@ -66,12 +66,20 @@ void	construct_t_mlx_texture(t_mlx *all)
 
 int    destruct_t_mlx(t_mlx *all)
 {
+	int	i;
+
 	ft_map_list_clear(all, &(all->map_begin));
 	if ((*all).line)
 		free((*all).line);
 	(*all).line = NULL;
 	if (all->map)
 	{
+		i = -1;
+		while (++i < all->map_height)
+		{
+			free(all->map[i]);
+			all->map[i] = NULL;
+		}
 		free(all->map);
 		all->map = NULL;
 	}

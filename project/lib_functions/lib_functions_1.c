@@ -12,6 +12,34 @@
 
 #include "../soLong/soLong.h"
 
+/***********************************
+*   3.1.3.1.1. ft_strdup           *
+************************************
+*/
+/*
+ * Description:
+ *		The  ft_strdup() function is rewrite strdup()
+ *		("returns a pointer to a new string which is 
+ *		a duplicate of the string s.").
+ * Return value:
+ * 		The pointer to new string.
+*/
+
+char		*ft_strdup(const char *s1)
+{
+	char	*c_copy;
+	int		len;
+
+	len = ft_strlen(s1);
+	c_copy = (char *)malloc((len + 1) * sizeof(char));
+	if (c_copy == 0)
+		return (NULL);
+	c_copy[len] = '\0';
+	while (len--)
+		c_copy[len] = s1[len];
+	return (c_copy);
+}
+
 /*******************************
 *     3.3.1.1. ft_strchr_int   *
 ********************************

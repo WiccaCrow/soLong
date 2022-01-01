@@ -63,10 +63,10 @@ void	construct_t_mlx(t_mlx *all, char **av)
 
 void	construct_t_mlx_win(t_mlx *all)
 {
-	(*all).mlx = NULL;
-	(*all).win = NULL;
-	(*all).mlx = mlx_init();
-	if (!(*all).mlx)
+	all->mlx = NULL;
+	all->win = NULL;
+	all->mlx = mlx_init();
+	if (!all->mlx)
 		error_occurse(all, ERROR_MLX_INIT);
 }
 
@@ -119,17 +119,25 @@ int	ft_exit_0(t_mlx *all)
 
 int	destruct_t_mlx(t_mlx *all)
 {
-	ft_map_list_clear(all, &(all->map_begin));
-	if ((*all).line)
-		free((*all).line);
-	(*all).line = NULL;
+	int	i;
+
+	ft_map_list_clear(&(all->map_begin));
+	if (all->line)
+		free(all->line);
+	all->line = NULL;
 	if (all->map)
 	{
+		i = -1;
+		while (++i < all->map_height)
+		{
+			free(all->map[i]);
+			all->map[i] = NULL;
+		}
 		free(all->map);
 		all->map = NULL;
 	}
-	if ((*all).frame.img)
-		mlx_destroy_image((*all).mlx, (*all).frame.img);
+	if (all->frame.img)
+		mlx_destroy_image(all->mlx, all->frame.img);
 	if (all->win)
 		mlx_destroy_window(all->mlx, all->win);
 	return (0);

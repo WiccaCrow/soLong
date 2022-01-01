@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "soLong.h"
+#include "../soLong.h"
 
 /*****************************************
 *           valid_one_char               *
@@ -57,10 +57,10 @@ void	valid_one_char(t_mlx *all, char *simbols, char char_to_check)
  *		2. ft_map_list_new;
 */
 
-void	map_add_list(t_mlx *all, char *line)
+void	map_add_list(t_mlx *all)
 {
 	all->map_height++;
-	ft_map_list_add_back(&(all->map_begin), ft_map_list_new(all, line));
+	ft_map_list_add_back(&(all->map_begin), ft_map_list_new(all));
 }
 
 /*****************************************
@@ -86,7 +86,8 @@ void	map_array_fill(t_mlx *all)
 		error_occurse(all, ERROR_MALLOC);
 	while (i < all->map_height)
 	{
-		all->map[i] = ptr_map->line;
+		all->map[i] = ft_strdup(ptr_map->line);
+		free(ptr_map->line);
 		ptr_map->line = NULL;
 		ptr_map = ptr_map->next;
 		++i;

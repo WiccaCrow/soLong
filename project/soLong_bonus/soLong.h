@@ -178,7 +178,7 @@ typedef struct s_mlx {
 
 // lib_functions
 //		file: lib_functions/lib_functions_0.c
-t_map_list		*ft_map_list_new(t_mlx *all, char *line);
+t_map_list		*ft_map_list_new(t_mlx *all);
 t_map_list		*ft_map_list_last(t_map_list *lst);
 void			ft_map_list_add_back(t_map_list **lst, t_map_list *new);
 void			ft_map_list_clear(t_mlx *all, t_map_list **lst);
@@ -207,7 +207,7 @@ int		map_check_and_fill(t_mlx *all);
 void	valid_empty_map(t_mlx *all, int gnl, int len_line);
 void	valid_fill_map(t_mlx *all, char *simbols);
 void	valid_one_char(t_mlx *all, char *simbols, char char_to_check);
-void	map_add_list(t_mlx *all, char *line);
+void	map_add_list(t_mlx *all);
 void	map_array_fill(t_mlx *all);
 void	checks_character_sets(t_mlx *all);
 void	checks_character_sets_find_matches(t_mlx *all, int *set_01cep_int, char *set_01cep_char);

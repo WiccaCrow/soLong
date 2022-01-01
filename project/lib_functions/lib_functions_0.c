@@ -23,18 +23,20 @@
  * Return value:
  * 		The pointer to new t_map_list.
  * Contains functions:
+ * 		3.1.3.1.1. ft_strdup;
  *		5. error_occurse;
 */
 
-t_map_list	*ft_map_list_new(t_mlx *all, char *line)
+t_map_list	*ft_map_list_new(t_mlx *all)
 {
 	t_map_list	*new_list;
 
 	new_list = (t_map_list *)malloc(sizeof(t_map_list));
 	if (!new_list)
 		error_occurse(all, ERROR_MALLOC);
-	new_list->line = line;
-	line = NULL;
+	new_list->line = ft_strdup(all->line);
+	free(all->line);
+	all->line = NULL;
 	new_list->next = NULL;
 	return (new_list);
 }
@@ -91,7 +93,7 @@ t_map_list	*ft_map_list_last(t_map_list *lst)
  *		The function clear list.
 */
 
-void	ft_map_list_clear(t_mlx *all, t_map_list **lst)
+void	ft_map_list_clear(t_map_list **lst)
 {
 	t_map_list	*ptr;
 
@@ -99,7 +101,7 @@ void	ft_map_list_clear(t_mlx *all, t_map_list **lst)
 	while (ptr)
 	{
 		ptr = (*lst)->next;
-		ft_map_list_delone(all, *lst);
+		ft_map_list_delone(*lst);
 		*lst = ptr;
 	}
 	if (lst)
@@ -115,10 +117,15 @@ void	ft_map_list_clear(t_mlx *all, t_map_list **lst)
  *		The function clear one element t_map_list.
 */
 
-void	ft_map_list_delone(t_mlx *all, t_map_list *lst)
+void	ft_map_list_delone(t_map_list *lst)
 {
-	free(lst->line);
-	lst->line = NULL;
-	all->line = NULL;
-	free(lst);
+	if (lst)
+	{
+		if (lst->line)
+		{
+			free(lst->line);
+			lst->line = NULL;
+		}
+		free(lst);
+	}
 }

@@ -29,13 +29,15 @@ file: ../gnl/get_next_line_utils.c                      gnl.  ft_strlen
 file: main.c                                        5.    error_occurse
 file: ../gnl/get_next_line_utils.c                  gnl.  ft_strlen
 file: valid/valid_1.c                           3.1.3. map_add_list
-file: lib_functions/lib_functions_0.c   		    3.1.3.1. ft_map_list_new
+file: lib_functions/lib_functions_0.c               3.1.3.1. ft_map_list_new
+file: lib_functions/lib_functions_1.c                   3.1.3.1.1. ft_strdup
 file: main.c                                            5.    error_occurse
-file: lib_functions/lib_functions_0.c   		    3.1.3.2. ft_map_list_add_back
-file: lib_functions/lib_functions_0.c   		        3.1.3.2.1. ft_map_list_last
+file: lib_functions/lib_functions_0.c               3.1.3.2. ft_map_list_add_back
+file: lib_functions/lib_functions_0.c                   3.1.3.2.1. ft_map_list_last
 file: ../gnl/get_next_line.c                    gnl. get_next_line
 file: ../gnl/get_next_line_utils.c              gnl. ft_strlen
 file: valid/valid_1.c                       3.2. map_array_fill
+file: lib_functions/lib_functions_1.c           3.1.3.1.1. ft_strdup
 file: main.c                                    5. error_occurse
 file: valid/valid_1.c                       3.3. checks_character_sets
 file: valid/valid_1.c                           3.3.1. checks_character_sets_find_matches
@@ -56,4 +58,8 @@ file: main.c                            5. error_occurse
 file: init_all_construct.c                  5.1. ft_exit_1
 file: ../gnl/get_next_line_utils.c          gnl. ft_strlen
 file: graphics/graphics_0_keys.c        6. graphics;
+
+
+
+
 file: init_all_construct.c              7. destruct_t_mlx
