@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics_1_keys                                    :+:      :+:    :+:   */
+/*   graphics_0_keys.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdulcie <mdulcie@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,26 +12,30 @@
 
 #include "soLong.h"
 
+/*************************
+*     6. graphics        *
+**************************
+*/
+/*
+ * Description:
+ *      This function runs games graphics (drow all game in games window).
+ * Contains functions:
+ * 		6.1. find_x_y_player;
+ * 		6.2. key_press;
+ * 		6.3. key_release;
+ * 		6.4. ft_exit_0;
+ * 		6.5. render_next_frame;
+*/
+
 void	graphics(t_mlx *all)
 {
-	// (*al).sprite_data = (t_spr *)malloc(((*al).nb_sprite + 1) * sizeof(t_spr));
-	// if (!(*al).sprite_data)
-	// {
-	// 	write(1, "Error\nmalloc error.\n", 21);
-	// 	exit_clean(al, -1, 0);
-	// }
-	// sprite_wall_zero(al);
 	find_x_y_player(all, 0, 0);
 	all->map[(int)all->x_pl][(int)all->y_pl] = '0';
-
 	mlx_hook(all->win, X11_EVENTS_KEYPRESS, 1L << 0, key_press, all);
 	mlx_hook(all->win, X11_EVENTS_KEYREL, 1L << 1, key_release, all);
 	mlx_hook(all->win, X11_EVENTS_EXIT, 1L << 0, ft_exit_0, all);
 	mlx_loop_hook(all->mlx, render_next_frame, all);
-	mlx_loop((*all).mlx);
-
-	// free((*al).sprite_data);
-	// (*al).sprite_data = NULL;
+	mlx_loop(all->mlx);
 }
 
 int	key_press(int keycode, t_mlx *all)
@@ -62,7 +66,7 @@ int	key_release(int keycode, t_mlx *all)
 	return (keycode);
 }
 
-void move_correct(t_mlx *all)
+void	move_correct(t_mlx *all)
 {
 	if (all->move.a == 1)
 		move_adws(all, 0, -1);

@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "soLong.h"
+#include "../soLong.h"
 
 /*****************************************
-*           valid_one_char               *
+*    3.1.2.1. valid_one_char             *
 ******************************************
 */
 /*
@@ -22,7 +22,8 @@
  *		(whether the character char_to_check matches the set of characters 
  *		in the string simbols).
  * Contains functions:
- *		1. error_occurse;
+ *		5. error_occurse;
+ *		gnl. ft_strlen;
 */
 
 void	valid_one_char(t_mlx *all, char *simbols, char char_to_check)
@@ -46,15 +47,15 @@ void	valid_one_char(t_mlx *all, char *simbols, char char_to_check)
 }
 
 /*****************************************
-*           map_add_list                 *
+*     3.1.3. map_add_list                *
 ******************************************
 */
 /*
  * Description:
  *		The function adds next line in list of map lines.
  * Contains functions:
- *		1. ft_map_list_add_back;
- *		2. ft_map_list_new;
+ *		3.1.3.1. ft_map_list_new;
+ *		3.1.3.2. ft_map_list_add_back;
 */
 
 void	map_add_list(t_mlx *all, char *line)
@@ -64,14 +65,14 @@ void	map_add_list(t_mlx *all, char *line)
 }
 
 /*****************************************
-*           map_array_fill               *
+*      3.2. map_array_fill               *
 ******************************************
 */
 /*
  * Description:
  *		The function fills map array from map list.
  * Contains functions:
- *		1. error_occurse;
+ *		5. error_occurse;
 */
 
 void	map_array_fill(t_mlx *all)
@@ -94,7 +95,7 @@ void	map_array_fill(t_mlx *all)
 }
 
 /*****************************************
-*           checks_character_sets        *
+*      3.3. checks_character_sets        *
 ******************************************
 */
 /*
@@ -102,7 +103,8 @@ void	map_array_fill(t_mlx *all)
  *		The function checks if the complete set of required (by subject) 
  *		symbols is present on the map.
  * Contains functions:
- *		1. error_occurse;
+ * 		3.3.1. checks_character_sets_find_matches;
+ *		5.     error_occurse;
 */
 
 void	checks_character_sets(t_mlx *all)
@@ -123,7 +125,7 @@ void	checks_character_sets(t_mlx *all)
 }
 
 /******************************************************
-*           checks_character_sets_find_matches        *
+*    3.3.1. checks_character_sets_find_matches        *
 *******************************************************
 */
 /*
@@ -133,7 +135,7 @@ void	checks_character_sets(t_mlx *all)
  *		required set of symbols for the validity of the map.
  *		The found characters are set to 0 in array set_01cep_int.
  * Contains functions:
- *		1. ft_strchr_int;
+ *		3.3.1.1. ft_strchr_int;
 */
 
 void	checks_character_sets_find_matches(t_mlx *all, int *set_01cep_int,

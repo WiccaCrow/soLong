@@ -13,7 +13,7 @@
 #include "../soLong/soLong.h"
 
 /*****************************************
-*           ft_map_list_new              *
+*    3.1.3.1. ft_map_list_new            *
 ******************************************
 */
 /*
@@ -23,7 +23,7 @@
  * Return value:
  * 		The pointer to new t_map_list.
  * Contains functions:
- *		1. error_occurse;
+ *		5. error_occurse;
 */
 
 t_map_list	*ft_map_list_new(t_mlx *all, char *line)
@@ -40,14 +40,14 @@ t_map_list	*ft_map_list_new(t_mlx *all, char *line)
 }
 
 /*****************************************
-*           ft_map_list_add_back         *
+*     3.1.3.2. ft_map_list_add_back      *
 ******************************************
 */
 /*
  * Description:
  *		The function adds new t_map_list in back of elements list. 
  * Contains functions:
- *		1. ft_map_list_last;
+ *		3.1.3.2.1. ft_map_list_last;
 */
 
 void	ft_map_list_add_back(t_map_list **lst, t_map_list *new)
@@ -64,7 +64,7 @@ void	ft_map_list_add_back(t_map_list **lst, t_map_list *new)
 }
 
 /*****************************************
-*           ft_map_list_last             *
+*   3.1.3.2.1. ft_map_list_last          *
 ******************************************
 */
 /*

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdulcie <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mdulcie <mdulcie@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 05:12:53 by mdulcie           #+#    #+#             */
 /*   Updated: 2020/12/17 23:29:19 by mdulcie          ###   ########.fr       */
@@ -111,7 +111,7 @@ char	*fill_in_line(char **str, char **buff, char **end, int ret)
 {
 	char	*line;
 
-	line = ft_strdup_free(*str, NULL, 2);
+	line = ft_strdup_free(*str, NULL, 1);
 	if (*buff)
 	{
 		free(*buff);

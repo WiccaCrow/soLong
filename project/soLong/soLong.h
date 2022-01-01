@@ -83,8 +83,6 @@ typedef struct s_move {
 	double	w;
 	double	d;
 	double	s;
-	// double	arrow_l;
-	// double	arrow_r;
 }	t_move;
 
 // frame
@@ -134,7 +132,7 @@ typedef struct s_mlx {
 	// frame
 	t_img			frame;
 	int				scale;
-	t_img			texture_floor;
+	// t_img			texture_floor;
 	t_img_array		texture_arrays;//memset0
 
 }	t_mlx;
@@ -159,14 +157,14 @@ void			*ft_memset(void *b, int c, size_t len);
 // constructors/init and destructors/clean ( init game )
 // 		file: init_all_construct.c
 void    construct_t_mlx(t_mlx *all, char **av);
-void	construct_t_mlx_texture(t_mlx *all);
+void	construct_t_mlx_win(t_mlx *all);
 int	    destruct_t_mlx(t_mlx *all);
 int		ft_exit_0(t_mlx *all);
 void	ft_exit_1(t_mlx *all);
 
 
 // validate and fill map array
-//		file: valid.c
+//		file: valid_0.c
 void	check_extention_argv(char *av, char *extension);
 void	parser_valid_argv1(t_mlx *all);
 int		map_check_and_fill(t_mlx *all);

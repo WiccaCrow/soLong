@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdulcie <mdulcie@42.fr>                     +#+  +:+       +#+        */
+/*   By: mdulcie <mdulcie@42.fr>                     +#+  +:+       +#+       */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 22:16:20 by mdulcie           #+#    #+#             */
 /*   Updated: 2020/12/10 22:16:24 by mdulcie          ###   ########.fr       */
@@ -22,6 +22,17 @@ int	ft_strchr_i(const char *s, int c)
 			return (-1);
 	return (i);
 }
+
+/*****************************************
+*        ft_strlen                       *
+******************************************
+*/
+/*
+ * Description:
+ * 		ft_strlen - calculate the length of a string.
+ * Return value:
+ * 		The number of bytes in the string pointed to by s
+*/
 
 int	ft_strlen(const char *s)
 {

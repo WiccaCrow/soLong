@@ -1,82 +1,123 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_all_construct.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdulcie <mdulcie@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/28 00:00:53 by mdulcie           #+#    #+#             */
+/*   Updated: 2021/12/28 00:00:58 by mdulcie          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "soLong.h"
 
 /*****************************************
-*	1.1.    construct_t_mlx  			 *
+*     2.    construct_t_mlx              *
 ******************************************
-*	Init all variables and pointers.
-*
-*	functions:
-*	1.1.1. construct_t_mlx_texture
-// *	1.1.2. construct_t_mlx_move_sprite_wall
+*/
+/*
+ * Description:
+ *		Init all variables and pointers.
+ *
+ * Contains functions:
+ *		2.1. construct_t_mlx_win;
+ *		2.2. ft_memset;
+ *		5.   error_occurse;
+ *		gnl. ft_strlen;
 */
 
 void	construct_t_mlx(t_mlx *all, char **av)
 {
-    all->argv1 = av[1];
-    all->fd = open(all->argv1, O_RDONLY);
-    if (all->fd == -1)
-    {
-        write(STDOUT_FILENO, ERROR_OPEN, ft_strlen(ERROR_OPEN));
-        exit(1);
-    }
-	construct_t_mlx_texture(all);
+	all->argv1 = av[1];
+	all->fd = open(all->argv1, O_RDONLY);
+	if (all->fd == -1)
+		error_occurse(all, ERROR_OPEN);
+	construct_t_mlx_win(all);
 	all->collect = 0;
 	all->collect_total = 0;
+	all->player_total = 0;
 	all->steps = 0;
-
 	all->line = NULL;
 	all->map_begin = NULL;
 	all->map = NULL;
 	all->map_height = 0;
 	all->map_lenght = 0;
 	all->scale = BLOCK_SIZE;
-
 	ft_memset(&all->move, 0, sizeof(all->move));
 	ft_memset(&all->frame, 0, sizeof(all->frame));
 	ft_memset(&all->texture_arrays, 0, sizeof(all->texture_arrays));
 }
 
-/********************************************
-*	1.1.2. construct_t_mlx_move_sprite_wall	*
-*********************************************
-*/	
-
-// void	start_move_sprite_wall(t_mlx *all)
-// {
-	// (*all).dist_wall = NULL;
-	// (*all).sprite_data = NULL;
-	// (*all).move.a = 0;
-	// (*all).move.w = 0;
-	// (*all).move.d = 0;
-	// (*all).move.s = 0;
-	// (*all).move.arrow_l = 0;
-	// (*all).move.arrow_r = 0;
-// }
-
 /*****************************************
-*		1.1.1. construct_t_mlx_texture	 *
+*       2.1. construct_t_mlx_win         *
 ******************************************
 */
+/*
+ * Description:
+ *		Init mlx variable for window of this game.
+ *
+ * Contains functions:
+ *		5.   error_occurse;
+*/
 
-void	construct_t_mlx_texture(t_mlx *all)
+void	construct_t_mlx_win(t_mlx *all)
 {
 	(*all).mlx = NULL;
 	(*all).win = NULL;
 	(*all).mlx = mlx_init();
 	if (!(*all).mlx)
-	{
-		write(1, ERROR_MLX_INIT, ft_strlen(ERROR_MLX_INIT));
-		exit (1);
-	}
+		error_occurse(all, ERROR_MLX_INIT);
 }
 
-/*****************************************
-*		1.3.4.1.1. exit_clean   	     *
-******************************************
-*	Exit program. Clean exit.
+/*******************************
+*		5.1. ft_exit_1         *
+********************************
+*/
+/*
+ * Description:
+ *		Exit the program without leaks.
+ * Exit code:
+ * 		1.
+ * Contains functions:
+ *		7.   destruct_t_mlx;
 */
 
-int    destruct_t_mlx(t_mlx *all)
+void	ft_exit_1(t_mlx *all)
+{
+	destruct_t_mlx(all);
+	exit(1);
+}
+
+/*******************************
+*		5.1. ft_exit_0         *
+********************************
+*/
+/*
+ * Description:
+ *		Exit the program without leaks.
+ * Exit code:
+ * 		0.
+ * Contains functions:
+ *		7.   destruct_t_mlx;
+*/
+
+int	ft_exit_0(t_mlx *all)
+{
+	destruct_t_mlx(all);
+	exit(1);
+}
+
+/*******************************
+*		7. destruct_t_mlx      *
+********************************
+*/
+/*
+ * Description:
+*	The function clears the allocated memory.
+*/
+
+int	destruct_t_mlx(t_mlx *all)
 {
 	ft_map_list_clear(all, &(all->map_begin));
 	if ((*all).line)
@@ -92,16 +133,4 @@ int    destruct_t_mlx(t_mlx *all)
 	if (all->win)
 		mlx_destroy_window(all->mlx, all->win);
 	return (0);
-}
-
-void	ft_exit_1(t_mlx *all)
-{
-	destruct_t_mlx(all);
-	exit(1);
-}
-
-int	ft_exit_0(t_mlx *all)
-{
-	destruct_t_mlx(all);
-	exit(1);
 }

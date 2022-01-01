@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics_1_render  .c                              :+:      :+:    :+:   */
+/*   texture_init_0.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdulcie <mdulcie@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,6 +11,18 @@
 /* ************************************************************************** */
 
 #include "../soLong.h"
+
+/*************************
+*     4. paste_texture   *
+**************************
+*/
+/*
+ * Description:
+ *      This function fills in all color texture arrays 
+ *      (using a subfunction texture1).
+ * Contains functions:
+ * 		4.1. texture1;
+*/
 
 void	paste_texture(t_mlx *all)
 {
@@ -22,22 +34,26 @@ void	paste_texture(t_mlx *all)
 }
 
 /*****************************************
-*                texture1                *
+*           4.1. texture1                *
 ******************************************
-*	The function checks extension of str, does re-fill img_to_fill,
-*	and fills img_to_fill (subfunction texture2).
-*
-* Contains functioins:
-*		ft_strlen;
-*		error_occurse;
-*		texture2;
+*/
+/*
+ * Description:
+ *	   The function checks extension of str
+ *	   and fills img_to_fill (subfunction texture2).
+ *
+ * Contains functioins:
+ *		4.1.1. texture2;
+ *		5.     error_occurse;
+ *		gnl.   ft_strlen;
 */
 
-void	texture1(t_mlx *all, char *str, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE])
+void	texture1(t_mlx *all, char *str,
+			int array_to_fill[BLOCK_SIZE][BLOCK_SIZE])
 {
-	int	str_i;
-	int	i;
-	char *extension;
+	int		str_i;
+	int		i;
+	char	*extension;
 
 	extension = TEXTURE_EXTENTION;
 	str_i = ft_strlen(str);
@@ -49,19 +65,23 @@ void	texture1(t_mlx *all, char *str, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE])
 }
 
 /*****************************************
-*                texture2                *
+*       4.1.1.   texture2                *
 ******************************************
-*	Paste textures trom str to img_to_fill.
-*
-* Contains functioins:
-*		error_occurse;
+*/
+/*
+ * Description:
+ *	Paste textures trom str to img_to_fill.
+ *
+ * Contains functioins:
+ *      4.1.1.1. fill_img_array;
+ *		5. error_occurse;
 */
 
-void	texture2(t_mlx *all, char *str, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE])
+void	texture2(t_mlx *all, char *str,
+			int array_to_fill[BLOCK_SIZE][BLOCK_SIZE])
 {
-	int 	fd;
-	t_img 	img_to_fill;
-
+	int		fd;
+	t_img	img_to_fill;
 
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
@@ -80,7 +100,20 @@ void	texture2(t_mlx *all, char *str, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE])
 	mlx_destroy_image((*all).mlx, img_to_fill.img);
 }
 
-void	fill_img_array(int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], t_img *img_to_fill)
+/*****************************************
+*       4.1.1.1.   fill_img_array        *
+******************************************
+*/
+/*
+ * Description:
+ *	      This function fills an array of colors from a texture.
+ *
+ * Contains functioins:
+ *      4.1.1.1.1. color_take;
+*/
+
+void	fill_img_array(int array_to_fill[BLOCK_SIZE][BLOCK_SIZE],
+			t_img *img_to_fill)
 {
 	int	i;
 	int	j;
@@ -96,10 +129,23 @@ void	fill_img_array(int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], t_img *img_to_fil
 	}
 }
 
-int	color_take(t_img *map, float i,float j)
+/*****************************************
+*       4.1.1.1.1.   color_take          *
+******************************************
+*/
+/*
+ * Description:
+ *        This function takes one color from a texture 
+ *        (in i and j coordinates).
+ *
+ * Contains functioins:
+ *      4.1.1.1.1.1. my_mlx_pix_take;
+*/
+
+int	color_take(t_img *map, float i, float j)
 {
-	int		x;
-	int		y;
+	int	x;
+	int	y;
 
 	x = j * (float)map->height / (float)BLOCK_SIZE;
 	y = i * (float)map->width / (float)BLOCK_SIZE;

@@ -1,14 +1,14 @@
 NAME 		= so_long
 
 CC			=	gcc
-FLAGS 		= 	-Wall -Wextra -Werror
+FLAGS 		= 	-Wall -Wextra -Werror -g
 
-SRC 		= 						  	\
-				main.c 				  	\
-				init_all_construct.c 	\
-				valid_0.c valid_1.c	 	\
+SRC 		= 						  									\
+				main.c 				  									\
+				init_all_construct.c 									\
+				valid/valid_0.c valid/valid_1.c	 						\
 				graphics/graphics_0_keys.c graphics/graphics_1_render.c \
-				texture_init/texture_init.c 
+				texture_init/texture_init_0.c texture_init/texture_init_1.c 
 
 SRC_LIB 	=	./lib_functions/lib_functions_0.c ./lib_functions/lib_functions_1.c
 SRC_GNL 	=	./gnl/get_next_line.c ./gnl/get_next_line_utils.c
@@ -16,10 +16,10 @@ SRC_GNL 	=	./gnl/get_next_line.c ./gnl/get_next_line_utils.c
 ifdef MAKE_BONUS
 FOLDER = ./soLong_bonus/
 SRC1 = $(addprefix $(FOLDER), $(SRC))
-SRC1 += $(addprefix $(FOLDER), sprites_go/sprites_go.c \
-			       sprites_go/sprites_go_move.c \
-			       sprites_go/sprites_go_drow.c \
-			       graphics/graphic_2_counters.c \
+SRC1 += $(addprefix $(FOLDER), sprites_go/sprites_go.c 	\
+			       sprites_go/sprites_go_move.c 		\
+			       sprites_go/sprites_go_drow.c 		\
+			       graphics/graphic_2_counters.c 		\
 			       texture_init/texture_init_won.c)
 HEAD = ./soLong_bonus/soLong.h
 else

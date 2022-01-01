@@ -13,7 +13,7 @@
 #include "../soLong/soLong.h"
 
 /*******************************
-*           ft_strchr_int      *
+*     3.3.1.1. ft_strchr_int   *
 ********************************
  * Description:
  *		The function finds char c in string s.
@@ -32,6 +32,14 @@ int	ft_strchr_int(const char *s, int c)
 	return (i);
 }
 
+/*************************************
+*     2.2.    ft_memset              *
+**************************************
+*/
+/*
+ * Description:
+ *		ft_memset - fill memory with a constant byte.
+*/
 
 void	*ft_memset(void *b, int c, size_t len)
 {

@@ -64,7 +64,8 @@
 // texture
 # define	TEXTURE_EXTENSION_XPM ".xpm"
 
-# define	TEXTURE_FLOOR "./textures/floor_grass.xpm"
+# define	TEXTURE_FLOOR "./textures/grass-1.xpm"
+//# define	TEXTURE_FLOOR "./textures/floor_grass.xpm"
 // # define	TEXTURE_WALL "./textures/wall_1.xpm"
 # define	TEXTURE_WALL "./textures/wall_trees.xpm"
 # define	TEXTURE_COLLECT "./textures/texture_ring.xpm"
