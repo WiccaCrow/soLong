@@ -30,15 +30,6 @@
 void	construct_t_mlx(t_mlx *all, char **av)
 {
 	construct_t_mlx_win(all);
-	all->collect = 0;
-	all->collect_total = 0;
-	all->player_total = 0;
-	all->steps = 0;
-	all->line = NULL;
-	all->map_begin = NULL;
-	all->map = NULL;
-	all->map_height = 0;
-	all->map_lenght = 0;
 	all->scale = BLOCK_SIZE;
 	ft_memset(&all->move, 0, sizeof(all->move));
 	ft_memset(&all->frame, 0, sizeof(all->frame));

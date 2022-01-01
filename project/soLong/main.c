@@ -37,6 +37,7 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		check_extention_argv(argv[1], ".ber");
+		ft_memset(&all, 0, sizeof(all));
 		construct_t_mlx(&all, argv);
 		parser_valid_argv1(&all);
 		paste_texture(&all);

@@ -32,12 +32,11 @@ void	move_correct_sprites_go(t_mlx *all)
 
 	n = -1;
 	gettimeofday(&tv, NULL);
-	if ((long int)tv.tv_usec % 2)
-	// if ((long int)tv.tv_sec > (long int)all->tv.tv_sec)
-	// if ((long int)tv.tv_sec - (long int)all->tv.tv_sec + (long int)tv.tv_usec - (long int)all->tv.tv_usec > 20000)
+	if ((tv.tv_sec > all->tv.tv_sec) || ((tv.tv_sec == all->tv.tv_sec)
+			&& ((int)tv.tv_usec / 1000 - (int)all->tv.tv_usec / 1000 > 20)))
 	{
-		// all->tv.tv_sec = tv.tv_sec;
-		// all->tv.tv_usec = tv.tv_usec;
+		all->tv.tv_sec = tv.tv_sec;
+		all->tv.tv_usec = tv.tv_usec;
 		while (++n < all->nb_sprites)
 		{
 			if (all->map[all->sprites[n].x][all->sprites[n].y
