@@ -105,8 +105,7 @@ void	move_adws_exit(t_mlx *all)
 {
 	if (!all->collect_total && all->map[(int)all->x_pl][(int)all->y_pl] == 'E')
 	{
-		write(STDOUT_FILENO, "You have collected all the collectibles and", 43);
-		write(STDOUT_FILENO, " now you can go to the exit.\n", 29);
+		write(STDOUT_FILENO, WON_EXIT, ft_strlen(WON_EXIT));
 		ft_exit_0(all);
 	}
 }

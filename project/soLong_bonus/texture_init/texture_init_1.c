@@ -12,8 +12,31 @@
 
 #include "../soLong.h"
 
+/***************************************
+*       4.1.3.1.   color_take          *
+****************************************
+*/
+/*
+ * Description:
+ *        This function takes one color from a texture 
+ *        (in i and j coordinates).
+ *
+ * Contains functioins:
+ *      4.1.3.1.1. my_mlx_pix_take;
+*/
+
+int	color_take(t_img *map, float i, float j)
+{
+	int		x;
+	int		y;
+
+	x = j * (float)map->height / (float)BLOCK_SIZE;
+	y = i * (float)map->width / (float)BLOCK_SIZE;
+	return (my_mlx_pix_take(map, y, x));
+}
+
 /*************************************
-*     4.1.1.1.1.1. my_mlx_pix_take   *
+*     4.1.3.1.1. my_mlx_pix_take   *
 **************************************
 */
 /*

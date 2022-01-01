@@ -65,6 +65,8 @@ incomplete. Required characters: 01CEP\n"
 # define X11_EVENTS_KEYREL 3
 # define X11_EVENTS_EXIT 17
 
+# define WON_EXIT "\033[38;2;255;255;10mYou have collected all the collectibles and now you can go to the exit.\n\033[0m"
+
 // game settings
 # define COLOR_SKIP 0x00FFFFFF
 // Scale

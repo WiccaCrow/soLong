@@ -59,7 +59,6 @@ void	check_extention_argv(char *av, char *extension)
  *		3.2. map_array_fill;
  *		3.3. checks_character_sets;
  *		5. error_occurse;
- *		gnl. ft_strlen;
 */
 
 void	parser_valid_argv1(t_mlx *all)
@@ -127,7 +126,7 @@ void	valid_empty_map(t_mlx *all, int gnl, int len_line)
 {
 	if (gnl == 0 && len_line == 0)
 	{
-		close ((*all).fd);
+		close (all->fd);
 		error_occurse(all, ERROR_MAP_EMPTY);
 	}
 }

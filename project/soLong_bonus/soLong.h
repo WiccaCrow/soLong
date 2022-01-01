@@ -36,6 +36,7 @@
 	# define	KEY_RIGHT_D 2
 	# define	KEY_DOWN_S 1
 	# define	KEY_ESC 53
+	# define    SYS_FLAG 'A'
 #else
 	# define	KEY_LEFT_A 97
 	# define	KEY_UP_W 119
@@ -46,6 +47,7 @@
 	# define	KEY_RIGHT_ARROW 65363
 	# define	KEY_DOWN_ARROW 65364
 	# define	KEY_ESC 65307
+	# define    SYS_FLAG 'L'
 #endif
 
 # define	X11_EVENTS_KEYPRESS 2
@@ -56,11 +58,14 @@
 
 # define	COUNTERS_STEP "Current number of movements is: "
 # define	COUNTERS_COLLECT "Your money: "
+# define    WON_EXIT "\033[38;2;255;255;10mYou have collected all the collectibles and now you can go to the exit.\n\033[0m"
+# define    GAME_OVER "\033[21;38;2;0;128;0mGAME OVER\n\033[0m"
 
 // game settings
 # define	COLOR_SKIP 0x00FFFFFF
 // Scale
 # define 	BLOCK_SIZE 48
+# define 	BLOCK_SIZE_X4 BLOCK_SIZE * 4
 // texture
 # define	TEXTURE_EXTENSION_XPM ".xpm"
 
@@ -90,7 +95,7 @@ typedef struct s_texture {
 	int	sprite_s[3][BLOCK_SIZE][BLOCK_SIZE];
 	int	sprite_go[4][BLOCK_SIZE][BLOCK_SIZE];
 	int	e_exit[BLOCK_SIZE][BLOCK_SIZE];
-	int	won[BLOCK_SIZE * 4][BLOCK_SIZE];
+	int	won[BLOCK_SIZE_X4][BLOCK_SIZE];
 }	t_img_array;
 
 
@@ -181,8 +186,8 @@ typedef struct s_mlx {
 t_map_list		*ft_map_list_new(t_mlx *all);
 t_map_list		*ft_map_list_last(t_map_list *lst);
 void			ft_map_list_add_back(t_map_list **lst, t_map_list *new);
-void			ft_map_list_clear(t_mlx *all, t_map_list **lst);
-void			ft_map_list_delone(t_mlx *all, t_map_list *lst);
+void			ft_map_list_clear(t_map_list **lst);
+void			ft_map_list_delone(t_map_list *lst);
 //		file: lib_functions/lib_functions_1.c
 int				ft_strchr_int(const char *s, int c);
 void			*ft_memset(void *b, int c, size_t len);
@@ -193,7 +198,7 @@ char			*ft_itoa(int n);
 // constructors/init and destructors/clean ( init game )
 // 		file: init_all_construct.c
 void    construct_t_mlx(t_mlx *all, char **av);
-void	construct_t_mlx_texture(t_mlx *all);
+void	construct_t_mlx_win(t_mlx *all);
 int	    destruct_t_mlx(t_mlx *all);
 int		ft_exit_0(t_mlx *all);
 void	ft_exit_1(t_mlx *all);
@@ -234,12 +239,12 @@ void	bonus_volume();
 // start
 void	paste_texture(t_mlx *all);
 void	texture(t_mlx *all, char *str, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE]);
-void	texture_won(t_mlx *all, char *str, int array_to_fill[BLOCK_SIZE * 4][BLOCK_SIZE]);
+void	texture_won(t_mlx *all, char *str, int array_to_fill[BLOCK_SIZE_X4][BLOCK_SIZE]);
 void	texture_img_init(t_mlx *all, t_img *img_to_fill, char *str);
 int		texture_check_extention(char *str, char *extension);
 void    drow_one_block(t_mlx *all, int x, int y, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], int color_skip);
 void	fill_img_array(int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], t_img *img_to_fill);
-void	fill_img_array_won(int array_to_fill[BLOCK_SIZE * 4][BLOCK_SIZE], t_img *img_to_fill);
+void	fill_img_array_won(int array_to_fill[BLOCK_SIZE_X4][BLOCK_SIZE], t_img *img_to_fill);
 int		color_take(t_img *map, float i,float j);
 
 void	graphics(t_mlx *all);

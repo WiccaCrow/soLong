@@ -1,9 +1,13 @@
 SoLong.
 
-This project is a small 2D game. It is built to make me work with
+This is a base for small 2D game. It is built to make me work with
 textures, sprites. And some very basic gameplay elements.
 
 To start this version run "make" in terminal from "project" directory.
+After that, start the game with the map as the second argument:
+./so_long  ./soLong_bonus/maps/2.ber 
+
+Finished cards are in the folder: ./soLong_bonus/maps.
 
 The header SoLong.h shows the structure of this project.
 
@@ -44,7 +48,6 @@ file: valid/valid_1.c                           3.3.1. checks_character_sets_fin
 file: lib_functions/lib_functions_0.c               3.3.1.1. ft_strchr_int
 file: main.c                                    5.     error_occurse
 file: main.c                                5.   error_occurse
-file: ../gnl/get_next_line_utils.c          gnl. ft_strlen
 file: texture_init/texture_init_0.c     4. paste_texture
 file: texture_init/texture_init_0.c         4.1. texture1
 file: texture_init/texture_init_0.c             4.1.1. texture2
@@ -64,9 +67,9 @@ file: graphics/graphics_0_keys.c                6.4. ft_exit_0
 file: graphics/graphics_0_keys.c            6.3. key_release
 file: graphics/graphics_0_keys.c            6.4. ft_exit_0
 file: graphics/graphics_1_render.c          6.5. render_next_frame
-file: graphics/graphics_2_move.c 		        6.5.1. move_correct
-file: graphics/graphics_2_move.c 		            6.5.1.1. move_adws
-file: graphics/graphics_2_move.c 		                6.5.1.1.1. move_adws_collect
+file: graphics/graphics_2_move.c                 6.5.1. move_correct
+file: graphics/graphics_2_move.c                     6.5.1.1. move_adws
+file: graphics/graphics_2_move.c                         6.5.1.1.1. move_adws_collect
 file: graphics/graphics_2_move.c                        6.5.1.1.2. move_adws_exit
 file: graphics/graphics_0_keys.c                            6.4. ft_exit_0            
 file: graphics/graphics_1_render.c              6.5.2. drow_map
@@ -75,7 +78,7 @@ file: graphics/graphics_1_render.c                      6.5.2.1.1. drow_one_bloc
 file: graphics/graphics_1_render.c                          6.5.2.1.1.1. my_mlx_pix_put
 file: lib_functions/lib_functions_0.c               3.3.1.1. ft_strchr_int
 file: ../gnl/get_next_line_utils.c                  gnl. ft_strlen
-file: main.c                                5. error_occurse
+file: main.c                                    5. error_occurse
 file: init_all_construct.c              7. destruct_t_mlx
 file: lib_functions/lib_functions_0.c       7.1. ft_map_list_clear
 file: lib_functions/lib_functions_0.c           7.1.1. ft_map_list_delone

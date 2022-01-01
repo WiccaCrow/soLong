@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics_1_keys                                    :+:      :+:    :+:   */
+/*   graphics_0_keys.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdulcie <mdulcie@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,6 +11,21 @@
 /* ************************************************************************** */
 
 #include "soLong.h"
+
+/*************************
+*     6. graphics        *
+**************************
+*/
+/*
+ * Description:
+ *      This function runs games graphics (drow all game in games window).
+ * Contains functions:
+ * 		6.1. find_x_y_player;
+ * 		6.2. key_press;
+ * 		6.3. key_release;
+ * 		6.4. ft_exit_0;
+ * 		6.5. render_next_frame;
+*/
 
 void	graphics(t_mlx *all)
 {
@@ -22,6 +37,49 @@ void	graphics(t_mlx *all)
 	mlx_loop_hook(all->mlx, render_next_frame, all);
 	mlx_loop((*all).mlx);
 }
+
+/*****************************
+*     6.1. find_x_y_player   *
+******************************
+*/
+/*
+ * Description:
+ *		This function fills in the player's starting position 
+ * 		from the map array.
+*/
+
+void	find_x_y_player(t_mlx *all, float x, float y)
+{
+	while (x < all->map_height)
+	{
+		y = 0;
+		while (x < all->map_height && y <= all->map_lenght)
+		{
+			if (all->map[(int)x][(int)y] == 'P')
+			{
+				(*all).x_pl = x + 0.5;
+				(*all).y_pl = y + 0.5;
+				return ;
+			}
+			++y;
+		}
+		++x;
+	}
+}
+
+/*************************
+*     6.2. key_press     *
+**************************
+*/
+/*
+ * Description:
+ *      The function sets the motion variable run 
+ *      ft_exit_0() depending on the pressed key.
+ * Return value:
+ * 		keycode.
+ * Contains functions:
+ * 		6.4. ft_exit_0;
+*/
 
 int	key_press(int keycode, t_mlx *all)
 {
@@ -44,6 +102,18 @@ int	key_press(int keycode, t_mlx *all)
 	return (keycode);
 }
 
+/*************************
+*     6.3. key_release   *
+**************************
+*/
+/*
+ * Description:
+ *      The function resets the motion or output 
+ *      variable depending on the released key.
+ * Return value:
+ * 		keycode.
+*/
+
 int	key_release(int keycode, t_mlx *all)
 {
 	if (keycode == KEY_LEFT_A || keycode == KEY_LEFT_ARROW)
@@ -55,23 +125,4 @@ int	key_release(int keycode, t_mlx *all)
 	if (keycode == KEY_DOWN_S || keycode == KEY_DOWN_ARROW)
 		(*all).move.s = 0;
 	return (keycode);
-}
-
-void	find_x_y_player(t_mlx *all, float x, float y)
-{
-	while (x < all->map_height)
-	{
-		y = 0;
-		while (x < all->map_height && y <= all->map_lenght)
-		{
-			if (all->map[(int)x][(int)y] == 'P')
-			{
-				(*all).x_pl = x + 0.5;
-				(*all).y_pl = y + 0.5;
-				return ;
-			}
-			++y;
-		}
-		++x;
-	}
 }

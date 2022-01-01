@@ -1,4 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprites_go_move.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdulcie <mdulcie@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/28 00:00:53 by mdulcie           #+#    #+#             */
+/*   Updated: 2021/12/28 00:00:58 by mdulcie          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../soLong.h"
+
+/*************************************
+*   6.5.3. move_correct_sprites_go   *
+**************************************
+*/
+/*
+ * Description:
+ *      This function creates next frame.
+ * Return value:
+ * 		0.
+ * Contains functions:
+ * 		6.5.3.1. game_over
+*/
 
 void	move_correct_sprites_go(t_mlx *all)
 {

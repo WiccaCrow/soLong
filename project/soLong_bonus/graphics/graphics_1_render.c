@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics_1_render  .c                              :+:      :+:    :+:   */
+/*   graphics_1_render.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdulcie <mdulcie@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,13 +12,30 @@
 
 #include "soLong.h"
 
+/*****************************
+*   6.5. render_next_frame   *
+******************************
+*/
+/*
+ * Description:
+ *      This function creates next frame.
+ * Return value:
+ * 		0.
+ * Contains functions:
+ * 		6.5.1. move_correct;
+ * 		6.5.2. drow_map;
+ * 		6.5.3. move_correct_sprites_go;
+ * 		5. error_occurse;
+ * 		
+*/
+
 int	render_next_frame(t_mlx *all)
 {
 	mlx_do_sync(all->mlx);
 	move_correct(all);
 	move_correct_sprites_go(all);
 	all->frame.img = mlx_new_image(all->mlx, all->map_lenght * BLOCK_SIZE,
-        all->map_height * BLOCK_SIZE);
+		all->map_height * BLOCK_SIZE);
 	if (!all->frame.img)
 		error_occurse(all, ERROR_MLX_NEW_IMAGE);
 	drow_map(all);
@@ -58,9 +75,9 @@ void	ft_mlx_one_bloke(t_mlx *all, int x, int y, char c)
 	if (c == '0')
 		drow_one_block(all, x, y, all->texture_arrays.floor, -1);
 	if (c == '1')
-    {
+	{
 		drow_one_block(all, x, y, all->texture_arrays.floor, -1);
-        drow_one_block(all, x, y, all->texture_arrays.wall, COLOR_SKIP);
+		drow_one_block(all, x, y, all->texture_arrays.wall, COLOR_SKIP);
     }
 	if (c == 'C')
     {
@@ -82,11 +99,12 @@ void	ft_mlx_one_bloke(t_mlx *all, int x, int y, char c)
 	}
 }
 
-void    drow_one_block(t_mlx *all, int x, int y, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], int color_skip)
+void    drow_one_block(t_mlx *all, int x, int y,
+		int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], int color_skip)
 {
-    int	i;
+	int	i;
 	int	j;
-    int color;
+	int	color;
 
 	i = 0;
 	j = 0;
@@ -94,12 +112,12 @@ void    drow_one_block(t_mlx *all, int x, int y, int array_to_fill[BLOCK_SIZE][B
 	{
 		j = -1;
 		while (++j < BLOCK_SIZE)
-        {
+		{
 			color = array_to_fill[i][j];
 			if (color != color_skip)
 				my_mlx_pix_put(&all->frame, y * all->scale + i,
 					x * all->scale + j, color);
-        }
+		}
 		i++;
 	}
 }
@@ -122,23 +140,23 @@ void	win_img(t_mlx *all)
 {
 	int	i;
 	int	j;
-    int color;
-	int block_size;
+	int	color;
 
 	if (all->collect == all->collect_total)
 	{
 		i = 0;
 		j = 0;
-		block_size = BLOCK_SIZE * 4;
-		while (i < block_size)
+		while (i < BLOCK_SIZE_X4)
 		{
 			j = -1;
 			while (++j < BLOCK_SIZE)
 			{
 				color = all->texture_arrays.won[i][j];
 				if (color != COLOR_SKIP)
-					my_mlx_pix_put(&all->frame, all->map_lenght / 2 * all->scale - 2 * all->scale + i,
-						all->map_height / 2 * all->scale - all->scale / 2 + j, color);
+					my_mlx_pix_put(&all->frame,
+						all->map_lenght / 2 * all->scale - 2 * all->scale + i,
+						all->map_height / 2 * all->scale - all->scale / 2 + j,
+						color);
 			}
 			i++;
 		}

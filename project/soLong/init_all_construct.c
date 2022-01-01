@@ -105,7 +105,7 @@ void	ft_exit_1(t_mlx *all)
 int	ft_exit_0(t_mlx *all)
 {
 	destruct_t_mlx(all);
-	exit(1);
+	exit(0);
 }
 
 /*******************************

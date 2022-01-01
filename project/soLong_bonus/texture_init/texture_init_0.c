@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics_1_render  .c                              :+:      :+:    :+:   */
+/*   texture_init_0.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdulcie <mdulcie@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,6 +11,19 @@
 /* ************************************************************************** */
 
 #include "../soLong.h"
+
+/*************************
+*     4. paste_texture   *
+**************************
+*/
+/*
+ * Description:
+ *      This function fills in all color texture arrays 
+ *      (using a subfunction texture1).
+ * Contains functions:
+ * 		4.1. texture;
+ * 		4.2. texture_won;
+*/
 
 void	paste_texture(t_mlx *all)
 {
@@ -22,7 +35,7 @@ void	paste_texture(t_mlx *all)
 	texture(all, TEXTURE_SPRITE_Sl_L, all->texture_arrays.sprite_s[0]);
 	texture(all, TEXTURE_SPRITE_Sl_R, all->texture_arrays.sprite_s[1]);
 	texture(all, TEXTURE_SPRITE_S_R_1, all->texture_arrays.sprite_go[0]);
-	texture(all, TEXTURE_SPRITE_S_R_2, all->texture_arrays.sprite_go[1]);	
+	texture(all, TEXTURE_SPRITE_S_R_2, all->texture_arrays.sprite_go[1]);
 	texture(all, TEXTURE_SPRITE_S_L_1, all->texture_arrays.sprite_go[2]);
 	texture(all, TEXTURE_SPRITE_S_L_2, all->texture_arrays.sprite_go[3]);
 	texture(all, TEXTURE_WALL, all->texture_arrays.wall);
@@ -30,20 +43,25 @@ void	paste_texture(t_mlx *all)
 }
 
 /*****************************************
-*                texture1                *
+*           4.1. texture                 *
 ******************************************
-*	The function checks extension of str, does re-fill img_to_fill,
-*	and fills img_to_fill (subfunction texture2).
-*
-* Contains functioins:
-*		ft_strlen;
-*		error_occurse;
-*		texture2;
+*/
+/*
+ * Description:
+ *	   The function checks extension of str
+ *	   and fills img_to_fill (subfunction texture2).
+ *
+ * Contains functioins:
+ *		4.1.1. texture_check_extention;
+ *		4.1.2. texture_img_init;
+  *		4.1.3. fill_img_array;
+ *		5.     error_occurse;
 */
 
-void	texture(t_mlx *all, char *str, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE])
+void	texture(t_mlx *all, char *str,
+		int array_to_fill[BLOCK_SIZE][BLOCK_SIZE])
 {
-	t_img 	img_to_fill;
+	t_img	img_to_fill;
 
 	if (texture_check_extention(str, TEXTURE_EXTENSION_XPM))
 		error_occurse(all, ERROR_TEXTURE_FORMAT);
@@ -51,9 +69,23 @@ void	texture(t_mlx *all, char *str, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE])
 	{
 		texture_img_init(all, &img_to_fill, str);
 		fill_img_array(array_to_fill, &img_to_fill);
-		mlx_destroy_image((*all).mlx, img_to_fill.img);
+		mlx_destroy_image(all->mlx, img_to_fill.img);
 	}
 }
+
+/*****************************************
+*     4.1.1. texture_check_extention     *
+******************************************
+*/
+/*
+ * Description:
+ *		The function checks extension of str.
+ * Return value:
+ *		1 if bad extention.
+ *		0 if good extention.
+ * Contains functioins:
+ *		gnl. ft_strlen;
+*/
 
 int	texture_check_extention(char *str, char *extension)
 {
@@ -68,9 +100,21 @@ int	texture_check_extention(char *str, char *extension)
 	return (0);
 }
 
+/*****************************************
+*       4.1.2. texture_img_init          *
+******************************************
+*/
+/*
+ * Description:
+ *	   The function checks extension of str
+ *	   and fills img_to_fill (subfunction texture2).
+ * Contains functioins:
+ *		5.     error_occurse;
+*/
+
 void	texture_img_init(t_mlx *all, t_img *img_to_fill, char *str)
 {
-	int 	fd;
+	int	fd;
 
 	fd = open(str, O_RDONLY);
 	if (fd < 0)
@@ -90,7 +134,20 @@ void	texture_img_init(t_mlx *all, t_img *img_to_fill, char *str)
 		error_occurse(all, ERROR_TEXTURE_ADDR);
 }
 
-void	fill_img_array(int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], t_img *img_to_fill)
+/***************************************
+*       4.1.3.   fill_img_array        *
+****************************************
+*/
+/*
+ * Description:
+ *	      This function fills an array of colors from a texture.
+ *
+ * Contains functioins:
+ *      4.1.3.1. color_take;
+*/
+
+void	fill_img_array(int array_to_fill[BLOCK_SIZE][BLOCK_SIZE],
+		t_img *img_to_fill)
 {
 	int	i;
 	int	j;
@@ -104,14 +161,4 @@ void	fill_img_array(int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], t_img *img_to_fil
 			array_to_fill[i][j] = color_take(img_to_fill, i, j);
 		i++;
 	}
-}
-
-int	color_take(t_img *map, float i,float j)
-{
-	int		x;
-	int		y;
-
-	x = j * (float)map->height / (float)BLOCK_SIZE;
-	y = i * (float)map->width / (float)BLOCK_SIZE;
-	return (my_mlx_pix_take(map, y, x));
 }

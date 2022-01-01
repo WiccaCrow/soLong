@@ -48,13 +48,15 @@ int	main(int argc, char **argv)
 		destruct_t_mlx(&all);
 	}
 	else
-		write(1, "Error:\nwrong numbers of arguments (argc)\n", 41);
+		write(STDOUT_FILENO, "Error:\nwrong numbers of arguments (argc)\n", 41);
 	return (0);
 }
 
 /*****************************************
 *       5. error_occurse                 *
 ******************************************
+*/
+/*
  * Description:
  * 		The function is intended to be called in case of an error.
  * 		The function prints an error message to standard output, 
