@@ -16,11 +16,10 @@ SRC_GNL 	=	./gnl/get_next_line.c ./gnl/get_next_line_utils.c
 ifdef MAKE_BONUS
 FOLDER = ./soLong_bonus/
 SRC1 = $(addprefix $(FOLDER), $(SRC))
-SRC1 += $(addprefix $(FOLDER), sprites_go/sprites_go.c 			\
-			       sprites_go/sprites_go_move.c 		\
-			       sprites_go/sprites_go_drow.c 		\
-			       graphics/graphics_3_counters.c 		\
-			       graphics/graphics_2_move_game_over.c	\
+SRC1 += $(addprefix $(FOLDER), sprites_go/sprites_go.c 				\
+			       sprites_go/sprites_go_move.c 			\
+			       sprites_go/sprites_go_drow.c 			\
+			       graphics/graphics_3_counters_and_win_msg.c 	\
 			       texture_init/texture_init_won.c )
 HEAD = ./soLong_bonus/soLong.h
 else

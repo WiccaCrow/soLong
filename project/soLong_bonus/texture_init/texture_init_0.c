@@ -32,8 +32,8 @@ void	paste_texture(t_mlx *all)
 	texture(all, TEXTURE_FLOOR, all->texture_arrays.floor);
 	texture(all, TEXTURE_PL_L_1, all->texture_arrays.player[0]);
 	texture(all, TEXTURE_PL_R_1, all->texture_arrays.player[1]);
-	texture(all, TEXTURE_SPRITE_Sl_L, all->texture_arrays.sprite_s[0]);
-	texture(all, TEXTURE_SPRITE_Sl_R, all->texture_arrays.sprite_s[1]);
+	texture(all, TEXTURE_SPRITE_SL_L, all->texture_arrays.sprite_s[0]);
+	texture(all, TEXTURE_SPRITE_SL_R, all->texture_arrays.sprite_s[1]);
 	texture(all, TEXTURE_SPRITE_S_R_1, all->texture_arrays.sprite_go[0]);
 	texture(all, TEXTURE_SPRITE_S_R_2, all->texture_arrays.sprite_go[1]);
 	texture(all, TEXTURE_SPRITE_S_L_1, all->texture_arrays.sprite_go[2]);

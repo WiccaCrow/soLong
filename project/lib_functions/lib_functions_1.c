@@ -98,6 +98,17 @@ static char	*ft_charnbr(char *s, int n, int i, int flag)
 	return (s);
 }
 
+/*************************************
+*     6.5.2.4.1.  ft_itoa            *
+**************************************
+*/
+/*
+ * Description:
+ *       Converts an integer n to a null-terminated 
+ *       string and stores the result in the array 
+ *       given by str parameter.
+*/
+
 char		*ft_itoa(int n)
 {
 	char	*s;

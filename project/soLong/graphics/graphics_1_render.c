@@ -61,24 +61,24 @@ void	drow_map(t_mlx *all)
 	int	x;
 	int	y;
 
-	(*all).frame.addr = mlx_get_data_addr((*all).frame.img,
-			&(*all).frame.b_p_p, &(*all).frame.line_l, &(*all).frame.endian);
+	all->frame.addr = mlx_get_data_addr(all->frame.img,
+			&all->frame.b_p_p, &all->frame.line_l, &all->frame.endian);
 	x = 0;
 	while (x < all->map_height)
 	{
 		y = 0;
 		while (y < all->map_lenght)
 		{
-			if (ft_strchr_int("01CE", (*all).map[x][y]) != ft_strlen("01CE"))
-				ft_mlx_one_bloke(all, x, y, (*all).map[x][y]);
+			if (ft_strchr_int("01CE", all->map[x][y]) != ft_strlen("01CE"))
+				ft_mlx_one_bloke(all, x, y, all->map[x][y]);
 			++y;
 		}
 		++x;
 	}
-	ft_mlx_one_bloke(all, (*all).x_pl, (*all).y_pl, 'P');
-	mlx_put_image_to_window((*all).mlx, (*all).win, (*all).frame.img, 0, 0);
-	mlx_destroy_image((*all).mlx, (*all).frame.img);
-	(*all).frame.img = NULL;
+	ft_mlx_one_bloke(all, all->x_pl, all->y_pl, 'P');
+	mlx_put_image_to_window(all->mlx, all->win, all->frame.img, 0, 0);
+	mlx_destroy_image(all->mlx, all->frame.img);
+	all->frame.img = NULL;
 }
 
 /********************************

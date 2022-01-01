@@ -84,6 +84,10 @@ void	move_adws_collect(t_mlx *all)
 	{
 		all->map[(int)all->x_pl][(int)all->y_pl] = '0';
 		all->collect++;
+		if (SYS_FLAG == 'A')
+			system("afplay --volume 2 1.wav &");
+		if (SYS_FLAG == 'L')
+			system("aplay 1.wav &");
 	}
 }
 

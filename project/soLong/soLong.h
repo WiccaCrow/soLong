@@ -65,7 +65,8 @@ incomplete. Required characters: 01CEP\n"
 # define X11_EVENTS_KEYREL 3
 # define X11_EVENTS_EXIT 17
 
-# define WON_EXIT "\033[38;2;255;255;10mYou have collected all the collectibles and now you can go to the exit.\n\033[0m"
+# define WON_EXIT "\033[38;2;255;255;10mYou have collected \
+all the collectibles and now you can go to the exit.\n\033[0m"
 
 // game settings
 # define COLOR_SKIP 0x00FFFFFF
@@ -210,6 +211,7 @@ void			parser_valid_argv1(t_mlx *all);
 int				map_check_and_fill(t_mlx *all);
 void			valid_empty_map(t_mlx *all, int gnl, int len_line);
 void			valid_fill_map(t_mlx *all, char *simbols);
+//		file: valid_1.c
 void			valid_one_char(t_mlx *all, char *simbols, char char_to_check);
 void			map_add_list(t_mlx *all);
 void			map_array_fill(t_mlx *all);
@@ -225,39 +227,48 @@ void			error_occurse(t_mlx *all, char *msg);
 /*                       graphics                                             */
 /******************************************************************************/
 
-// start
+// start init
+//		file: texture_init/texture_init_0.c
 void			paste_texture(t_mlx *all);
 void			texture1(t_mlx *all, char *str,
 					int array_to_fill[BLOCK_SIZE][BLOCK_SIZE]);
 void			texture2(t_mlx *all, char *str,
 					int array_to_fill[BLOCK_SIZE][BLOCK_SIZE]);
-void			drow_one_block(t_mlx *all, int x, int y,
-					int array_to_fill[BLOCK_SIZE][BLOCK_SIZE]);
 void			fill_img_array(int array_to_fill[BLOCK_SIZE][BLOCK_SIZE],
 					t_img *img_to_fill);
 int				color_take(t_img *map, float i, float j);
+//		file: texture_init/texture_init_1.c
+unsigned int	my_mlx_pix_take(t_img *map, int x, int y);
 
+// start run
+//		file: graphics/graphics_0_keys.c
 void			graphics(t_mlx *all);
 
 // find start player position
+//		file: graphics/graphics_0_keys.c
 void			find_x_y_player(t_mlx *all, float x, float y);
 
 // catch key
+//		file: graphics/graphics_0_keys.c
 int				key_press(int keycode, t_mlx *all);
 int				key_release(int keycode, t_mlx *all);
 
 // drow image and move
-//		render. start
+//	render. start
+//		file: graphics/graphics_1_render.c
 int				render_next_frame(t_mlx *all);
-//		move
+//	move
+//		file: graphics/graphics_2_move.c
 void			move_correct(t_mlx *all);
 void			move_adws(t_mlx *all, int add_x, int add_y);
 void			move_adws_collect(t_mlx *all);
 void			move_adws_exit(t_mlx *all);
-//		drow
+//	drow
+//		file: graphics/graphics_1_render.c
 void			drow_map(t_mlx *all);
 void			ft_mlx_one_bloke(t_mlx *all, int x, int y, char c);
-unsigned int	my_mlx_pix_take(t_img *map, int x, int y);
+void			drow_one_block(t_mlx *all, int x, int y,
+					int array_to_fill[BLOCK_SIZE][BLOCK_SIZE]);
 void			my_mlx_pix_put(t_img *map, int x, int y, int color);
 
 #endif

@@ -29,10 +29,6 @@
 
 void	construct_t_mlx(t_mlx *all, char **av)
 {
-	all->argv1 = av[1];
-	all->fd = open(all->argv1, O_RDONLY);
-	if (all->fd == -1)
-		error_occurse(all, ERROR_OPEN);
 	construct_t_mlx_win(all);
 	all->collect = 0;
 	all->collect_total = 0;
@@ -40,8 +36,8 @@ void	construct_t_mlx(t_mlx *all, char **av)
 	all->steps = 0;
 	all->nb_texture_pl = 1;
 	all->line = NULL;
-	all->map_begin = NULL;
 	all->map = NULL;
+	all->map_begin = NULL;
 	all->map_height = 0;
 	all->map_lenght = 0;
 	all->scale = BLOCK_SIZE;
@@ -49,6 +45,10 @@ void	construct_t_mlx(t_mlx *all, char **av)
 	ft_memset(&all->move, 0, sizeof(all->move));
 	ft_memset(&all->frame, 0, sizeof(all->frame));
 	ft_memset(&all->texture_arrays, 0, sizeof(all->texture_arrays));
+	all->argv1 = av[1];
+	all->fd = open(all->argv1, O_RDONLY);
+	if (all->fd == -1)
+		error_occurse(all, ERROR_OPEN);
 }
 
 /*****************************************
@@ -125,7 +125,8 @@ int	destruct_t_mlx(t_mlx *all)
 {
 	int	i;
 
-	ft_map_list_clear(&(all->map_begin));
+	if (all->map_begin)
+		ft_map_list_clear(&(all->map_begin));
 	if (all->line)
 		free(all->line);
 	all->line = NULL;
