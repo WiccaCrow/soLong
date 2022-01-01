@@ -160,7 +160,7 @@ void	valid_fill_map(t_mlx *all, char *simbols)
 			++all->player_total;
 	}
 	if (all->map_lenght != ft_strlen(all->line))
-		error_occurse(all, ERROR_MAP_RECTANGULAR);	
+		error_occurse(all, ERROR_MAP_RECTANGULAR);
 	if (all->player_total > 1)
 		error_occurse(all, ERROR_MAP_PLAYER);
 	if (all->line[0] != '1' || all->line[ft_strlen(all->line) - 1] != '1')

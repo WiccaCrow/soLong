@@ -7,7 +7,7 @@ SRC 		= 						  									\
 				main.c 				  									\
 				init_all_construct.c 									\
 				valid/valid_0.c valid/valid_1.c	 						\
-				graphics/graphics_0_keys.c graphics/graphics_1_render.c \
+				graphics/graphics_0_keys.c graphics/graphics_2_move.c graphics/graphics_1_render.c \
 				texture_init/texture_init_0.c texture_init/texture_init_1.c 
 
 SRC_LIB 	=	./lib_functions/lib_functions_0.c ./lib_functions/lib_functions_1.c
@@ -19,7 +19,7 @@ SRC1 = $(addprefix $(FOLDER), $(SRC))
 SRC1 += $(addprefix $(FOLDER), sprites_go/sprites_go.c 	\
 			       sprites_go/sprites_go_move.c 		\
 			       sprites_go/sprites_go_drow.c 		\
-			       graphics/graphic_2_counters.c 		\
+			       graphics/graphics_3_counters.c 		\
 			       texture_init/texture_init_won.c)
 HEAD = ./soLong_bonus/soLong.h
 else

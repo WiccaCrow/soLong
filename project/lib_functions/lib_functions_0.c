@@ -85,12 +85,14 @@ t_map_list	*ft_map_list_last(t_map_list *lst)
 }
 
 /*****************************************
-*           ft_map_list_clear            *
+*       7.1. ft_map_list_clear           *
 ******************************************
 */
 /*
  * Description:
- *		The function clear list.
+ *		 The function clear list.
+ * Contains functions:
+ * 		7.1.1. ft_map_list_delone;
 */
 
 void	ft_map_list_clear(t_map_list **lst)
@@ -109,12 +111,12 @@ void	ft_map_list_clear(t_map_list **lst)
 }
 
 /*****************************************
-*           ft_map_list_delone           *
+*      7.1.1. ft_map_list_delone         *
 ******************************************
 */
 /*
  * Description:
- *		The function clear one element t_map_list.
+ *		The function delete one element of t_map_list.
 */
 
 void	ft_map_list_delone(t_map_list *lst)

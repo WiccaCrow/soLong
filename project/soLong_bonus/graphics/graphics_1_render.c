@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "soLong.h"
-// void    drow_floor(t_mlx *all, int x, int y);
 
 int	render_next_frame(t_mlx *all)
 {
@@ -57,33 +56,33 @@ void	drow_map(t_mlx *all)
 void	ft_mlx_one_bloke(t_mlx *all, int x, int y, char c)
 {
 	if (c == '0')
-		drow_floor(all, x, y, all->texture_arrays.floor, -1);
+		drow_one_block(all, x, y, all->texture_arrays.floor, -1);
 	if (c == '1')
     {
-		drow_floor(all, x, y, all->texture_arrays.floor, -1);
-        drow_floor(all, x, y, all->texture_arrays.wall, COLOR_SKIP);
+		drow_one_block(all, x, y, all->texture_arrays.floor, -1);
+        drow_one_block(all, x, y, all->texture_arrays.wall, COLOR_SKIP);
     }
 	if (c == 'C')
     {
-		drow_floor(all, x, y, all->texture_arrays.floor, -1);
-        drow_floor(all, x, y, all->texture_arrays.collect, COLOR_SKIP);
+		drow_one_block(all, x, y, all->texture_arrays.floor, -1);
+        drow_one_block(all, x, y, all->texture_arrays.collect, COLOR_SKIP);
     }
 	if (c == 'P')
-        drow_floor(all, x, y, all->texture_arrays.player[all->nb_texture_pl], COLOR_SKIP);
+        drow_one_block(all, x, y, all->texture_arrays.player[all->nb_texture_pl], COLOR_SKIP);
     if (c == 'E')
     {
-		drow_floor(all, x, y, all->texture_arrays.floor, -1);
-        drow_floor(all, x, y, all->texture_arrays.e_exit, COLOR_SKIP);
+		drow_one_block(all, x, y, all->texture_arrays.floor, -1);
+        drow_one_block(all, x, y, all->texture_arrays.e_exit, COLOR_SKIP);
     }
 	if (c == 's')
 	{
-		drow_floor(all, x, y, all->texture_arrays.floor, -1);
+		drow_one_block(all, x, y, all->texture_arrays.floor, -1);
 		gettimeofday(&all->tv, NULL);
-        drow_floor(all, x, y, all->texture_arrays.sprite_s[all->tv.tv_sec % 2], COLOR_SKIP);
+        drow_one_block(all, x, y, all->texture_arrays.sprite_s[all->tv.tv_sec % 2], COLOR_SKIP);
 	}
 }
 
-void    drow_floor(t_mlx *all, int x, int y, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], int color_skip)
+void    drow_one_block(t_mlx *all, int x, int y, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], int color_skip)
 {
     int	i;
 	int	j;

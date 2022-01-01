@@ -57,9 +57,25 @@ file: ../gnl/get_next_line_utils.c              gnl.   ft_strlen
 file: main.c                            5. error_occurse
 file: init_all_construct.c                  5.1. ft_exit_1
 file: ../gnl/get_next_line_utils.c          gnl. ft_strlen
-file: graphics/graphics_0_keys.c        6. graphics;
-
-
-
-
+file: graphics/graphics_0_keys.c        6. graphics
+file: graphics/graphics_0_keys.c            6.1. find_x_y_player
+file: graphics/graphics_0_keys.c            6.2. key_press
+file: graphics/graphics_0_keys.c                6.4. ft_exit_0
+file: graphics/graphics_0_keys.c            6.3. key_release
+file: graphics/graphics_0_keys.c            6.4. ft_exit_0
+file: graphics/graphics_1_render.c          6.5. render_next_frame
+file: graphics/graphics_2_move.c 		        6.5.1. move_correct
+file: graphics/graphics_2_move.c 		            6.5.1.1. move_adws
+file: graphics/graphics_2_move.c 		                6.5.1.1.1. move_adws_collect
+file: graphics/graphics_2_move.c                        6.5.1.1.2. move_adws_exit
+file: graphics/graphics_0_keys.c                            6.4. ft_exit_0            
+file: graphics/graphics_1_render.c              6.5.2. drow_map
+file: graphics/graphics_1_render.c                  6.5.2.1. ft_mlx_one_bloke
+file: graphics/graphics_1_render.c                      6.5.2.1.1. drow_one_block
+file: graphics/graphics_1_render.c                          6.5.2.1.1.1. my_mlx_pix_put
+file: lib_functions/lib_functions_0.c               3.3.1.1. ft_strchr_int
+file: ../gnl/get_next_line_utils.c                  gnl. ft_strlen
+file: main.c                                5. error_occurse
 file: init_all_construct.c              7. destruct_t_mlx
+file: lib_functions/lib_functions_0.c       7.1. ft_map_list_clear
+file: lib_functions/lib_functions_0.c           7.1.1. ft_map_list_delone

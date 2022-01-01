@@ -90,7 +90,7 @@ void	ft_exit_1(t_mlx *all)
 }
 
 /*******************************
-*		5.1. ft_exit_0         *
+*		6.4. ft_exit_0         *
 ********************************
 */
 /*
@@ -114,10 +114,12 @@ int	ft_exit_0(t_mlx *all)
 */
 /*
  * Description:
-*	The function clears the allocated memory.
+ *	The function clears the allocated memory.
+ * Contains functions:
+ * 		7.1. ft_map_list_clear;
 */
 
-int	destruct_t_mlx(t_mlx *all)
+void	destruct_t_mlx(t_mlx *all)
 {
 	int	i;
 
@@ -140,5 +142,4 @@ int	destruct_t_mlx(t_mlx *all)
 		mlx_destroy_image(all->mlx, all->frame.img);
 	if (all->win)
 		mlx_destroy_window(all->mlx, all->win);
-	return (0);
 }

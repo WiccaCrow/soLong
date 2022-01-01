@@ -38,76 +38,15 @@ void	graphics(t_mlx *all)
 	mlx_loop(all->mlx);
 }
 
-int	key_press(int keycode, t_mlx *all)
-{
-	if (keycode == KEY_LEFT_A || keycode == KEY_LEFT_ARROW)
-		(*all).move.a = 1;
-	if (keycode == KEY_UP_W || keycode == KEY_UP_ARROW)
-		(*all).move.w = 1;
-	if (keycode == KEY_RIGHT_D || keycode == KEY_RIGHT_ARROW)
-		(*all).move.d = 1;
-	if (keycode == KEY_DOWN_S || keycode == KEY_DOWN_ARROW)
-		(*all).move.s = 1;
-	if (keycode == KEY_ESC)
-		ft_exit_0(all);
-	return (keycode);
-}
-
-int	key_release(int keycode, t_mlx *all)
-{
-	if (keycode == KEY_LEFT_A || keycode == KEY_LEFT_ARROW)
-		(*all).move.a = 0;
-	if (keycode == KEY_UP_W || keycode == KEY_UP_ARROW)
-		(*all).move.w = 0;
-	if (keycode == KEY_RIGHT_D || keycode == KEY_RIGHT_ARROW)
-		(*all).move.d = 0;
-	if (keycode == KEY_DOWN_S || keycode == KEY_DOWN_ARROW)
-		(*all).move.s = 0;
-	return (keycode);
-}
-
-void	move_correct(t_mlx *all)
-{
-	if (all->move.a == 1)
-		move_adws(all, 0, -1);
-	if (all->move.d == 1)
-		move_adws(all, 0, 1);
-	if (all->move.w == 1)
-		move_adws(all, -1, 0);
-	if (all->move.s == 1)
-		move_adws(all, 1, 0);
-}
-
-void	move_adws(t_mlx *all, int add_x, int add_y)
-{
-	if (all->map[(int)all->x_pl + add_x][(int)all->y_pl + add_y] != '1')
-	{
-		all->x_pl += add_x;
-		all->y_pl += add_y;
-		printf("Current number of movements is: %d\n", ++(all->steps));
-		move_adws_collect(all);
-		move_adws_exit(all);
-	}
-}
-
-void	move_adws_collect(t_mlx *all)
-{
-	if (all->map[(int)all->x_pl][(int)all->y_pl] == 'C')
-	{
-		all->map[(int)all->x_pl][(int)all->y_pl] = '0';
-		all->collect++;
-		all->collect_total--;
-	}
-}
-
-void	move_adws_exit(t_mlx *all)
-{
-	if (!all->collect_total && all->map[(int)all->x_pl][(int)all->y_pl] == 'E')
-	{
-		printf("You have collected all the collectibles and now you can go to the exit.\n");
-		ft_exit_0(all);
-	}
-}
+/*****************************
+*     6.1. find_x_y_player   *
+******************************
+*/
+/*
+ * Description:
+ *		This function fills in the player's starting position 
+ * 		from the map array.
+*/
 
 void	find_x_y_player(t_mlx *all, float x, float y)
 {
@@ -126,4 +65,58 @@ void	find_x_y_player(t_mlx *all, float x, float y)
 		}
 		++x;
 	}
+}
+
+/*************************
+*     6.2. key_press     *
+**************************
+*/
+/*
+ * Description:
+ *      The function sets the motion variable run 
+ *      ft_exit_0() depending on the pressed key.
+ * Return value:
+ * 		keycode.
+ * Contains functions:
+ * 		6.4. ft_exit_0;
+*/
+
+int	key_press(int keycode, t_mlx *all)
+{
+	if (keycode == KEY_LEFT_A || keycode == KEY_LEFT_ARROW)
+		(*all).move.a = 1;
+	if (keycode == KEY_UP_W || keycode == KEY_UP_ARROW)
+		(*all).move.w = 1;
+	if (keycode == KEY_RIGHT_D || keycode == KEY_RIGHT_ARROW)
+		(*all).move.d = 1;
+	if (keycode == KEY_DOWN_S || keycode == KEY_DOWN_ARROW)
+		(*all).move.s = 1;
+	if (keycode == KEY_ESC)
+		ft_exit_0(all);
+	return (keycode);
+}
+
+/*************************
+*     6.3. key_release   *
+**************************
+*/
+/*
+ * Description:
+ *      The function resets the motion or output 
+ *      variable depending on the released key.
+ * Return value:
+ * 		keycode.
+*/
+
+int	key_release(int keycode, t_mlx *all)
+{
+	if (keycode == KEY_LEFT_A || keycode == KEY_LEFT_ARROW)
+		(*all).move.a = 0;
+	if (keycode == KEY_UP_W || keycode == KEY_UP_ARROW)
+		(*all).move.w = 0;
+	if (keycode == KEY_RIGHT_D || keycode == KEY_RIGHT_ARROW)
+		(*all).move.d = 0;
+	if (keycode == KEY_DOWN_S || keycode == KEY_DOWN_ARROW)
+		(*all).move.s = 0;
+	return (keycode);
 }

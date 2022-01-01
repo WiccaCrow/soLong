@@ -237,7 +237,7 @@ void	texture(t_mlx *all, char *str, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE]);
 void	texture_won(t_mlx *all, char *str, int array_to_fill[BLOCK_SIZE * 4][BLOCK_SIZE]);
 void	texture_img_init(t_mlx *all, t_img *img_to_fill, char *str);
 int		texture_check_extention(char *str, char *extension);
-void    drow_floor(t_mlx *all, int x, int y, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], int color_skip);
+void    drow_one_block(t_mlx *all, int x, int y, int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], int color_skip);
 void	fill_img_array(int array_to_fill[BLOCK_SIZE][BLOCK_SIZE], t_img *img_to_fill);
 void	fill_img_array_won(int array_to_fill[BLOCK_SIZE * 4][BLOCK_SIZE], t_img *img_to_fill);
 int		color_take(t_img *map, float i,float j);
