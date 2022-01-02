@@ -25,7 +25,7 @@
  * 		The pointer to new string.
 */
 
-char		*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	char	*c_copy;
 	int		len;
@@ -79,8 +79,13 @@ void	*ft_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-static char	*ft_charnbr(char *s, int n, int i, int flag)
+static char	*ft_charnbr(int n, int i, int flag)
 {
+	char	*s;
+
+	s = calloc(++i, sizeof(char));
+	if (!s)
+		return (NULL);
 	if (n < 0)
 	{
 		n = -n;
@@ -109,7 +114,7 @@ static char	*ft_charnbr(char *s, int n, int i, int flag)
  *       given by str parameter.
 */
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*s;
 	int		i;
@@ -117,19 +122,21 @@ char		*ft_itoa(int n)
 	int		flag;
 
 	flag = 0;
-	i = 1;
 	if (n == -2147483648)
 	{
 		flag = 1;
 		n++;
 	}
+	i = 1;
 	c = n;
-	while ((c /= 10))
+	c /= 10;
+	while (c)
+	{
 		i++;
-	n < 0 ? i++ : 0;
-	if (!(s = (char *)malloc(sizeof(char) * ++i)))
-		return (NULL);
-	s[--i] = 0;
-	s = ft_charnbr(s, n, i, flag);
+		c /= 10;
+	}
+	if (n < 0)
+		++i;
+	s = ft_charnbr(n, --i, flag);
 	return (s);
 }

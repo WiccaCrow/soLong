@@ -125,26 +125,27 @@ typedef struct s_map_list {
 }	t_map_list;
 
 typedef struct s_mlx {
-	void		*mlx;
-	void		*win;
-	char		*argv1;
-	int			fd;
-	char		*line;
-	char		**map;
-	int			map_height;
-	int			map_lenght;
-	t_map_list	*map_begin;
-	int			collect;
-	int			collect_total;
-	int			steps;
-	int			player_total;
-	float		x_pl;
-	float		y_pl;
-	t_move		move;
-	t_img		frame;
-	int			scale;
-	t_img_array	texture_arrays;
-	int			color_skip;
+	void			*mlx;
+	void			*win;
+	char			*argv1;
+	int				fd;
+	char			*line;
+	char			**map;
+	int				map_height;
+	int				map_lenght;
+	t_map_list		*map_begin;
+	int				collect;
+	int				collect_total;
+	int				steps;
+	int				player_total;
+	float			x_pl;
+	float			y_pl;
+	t_move			move;
+	t_img			frame;
+	int				scale;
+	t_img_array		texture_arrays;
+	int				color_skip;
+	struct timeval	tv;
 }	t_mlx;
 
 /*

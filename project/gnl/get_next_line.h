@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdulcie <mdulcie@42.fr>                     +#+  +:+       +#+        */
+/*   By: mdulcie <mdulcie@42.fr>                     +#+  +:+       +#+       */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 08:07:27 by mdulcie           #+#    #+#             */
 /*   Updated: 2020/12/17 23:31:24 by mdulcie          ###   ########.fr       */

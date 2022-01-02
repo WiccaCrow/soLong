@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "soLong.h"
+#include "../soLong.h"
 
 /*************************
 *  6.5.1. move_correct   *
@@ -61,6 +61,7 @@ void	move_adws(t_mlx *all, int add_x, int add_y)
 	{
 		all->x_pl += add_x;
 		all->y_pl += add_y;
+		++all->steps;
 		move_adws_death(all);
 		move_adws_collect(all);
 		move_adws_exit(all);

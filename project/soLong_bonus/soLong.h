@@ -82,12 +82,14 @@ all the collectibles and now you can go to the exit.\n\033[0m"
 // game settings
 # define COLOR_SKIP 0x00FFFFFF
 // Scale
+// # define BLOCK_SIZE 96
+// # define BLOCK_SIZE_X4 384
 # define BLOCK_SIZE 48
 # define BLOCK_SIZE_X4 192
 // texture
 # define TEXTURE_EXTENSION_XPM ".xpm"
 // speed of sprites
-# define SPEED_SPRITE 25
+// # define SPEED_SPRITE 1
 
 # define TEXTURE_FLOOR "./textures/grass-1.xpm"
 //# define	TEXTURE_FLOOR "./textures/floor_grass.xpm"

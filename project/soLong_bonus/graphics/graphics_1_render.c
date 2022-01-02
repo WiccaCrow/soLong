@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "soLong.h"
+#include "../soLong.h"
 
 /*****************************
 *   6.5. render_next_frame   *
@@ -67,9 +67,9 @@ void	drow_map(t_mlx *all)
 	drow_map_01ces(all);
 	ft_mlx_one_bloke(all, all->x_pl, all->y_pl, 'P');
 	sprites_go_drow(all);
-	counters_print_img(all);
 	win_img(all);
 	mlx_put_image_to_window(all->mlx, all->win, all->frame.img, 0, 0);
+	counters_print_img(all);
 	mlx_destroy_image(all->mlx, all->frame.img);
 	all->frame.img = NULL;
 }
