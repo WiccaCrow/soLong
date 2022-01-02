@@ -100,7 +100,7 @@ and "./soLong_bonus/maps/2.ber" is the path to the map.
 
 You can also create maps yourself for more variety.
 
-Card storage folder:
+Maps storage folder:
 
 base        soLong/project/soLong/maps/
 
