@@ -37,15 +37,6 @@ _____________________________________________________________________RU
     
   Коротко:
   
-  Для сбора движка игры используйте команду 
-  
-        make
-    
-  затем запустите игру командой 
-  
-        ./so_long ./soLong/maps/1.ber
-    
-
   Для сбора игры используйте команду:
   
         make bonus
@@ -53,6 +44,15 @@ _____________________________________________________________________RU
   затем запустите игру командой
   
     ./so_long ./soLong_bonus/maps/2.ber
+  
+  Для сбора движка игры используйте команду 
+  
+        make
+    
+  затем запустите движок командой 
+  
+        ./so_long ./soLong/maps/1.ber
+    
 
   Выше ./so_long имя игры, а ./soLong_bonus/maps/2.ber это путь до карты.
 
@@ -61,9 +61,9 @@ _____________________________________________________________________RU
 
 Папка для хранения карт:
 
-движок soLong/project/soLong/maps/
+движок  soLong/project/soLong/maps/
 
-игра   soLong/project/soLong_bonus/maps/
+игра    soLong/project/soLong_bonus/maps/
 
 Приятной Вам игры!!!
 
@@ -78,6 +78,14 @@ To start the game:
     is a README.txt with detailed instructions. 
     Short:
     
+    To create the game, use the command:
+    
+        make bonus
+        
+    then start the game with the command
+    
+        ./so_long ./soLong_bonus/maps/2.ber
+    
     To create the base, use the command
     
         make
@@ -86,13 +94,6 @@ To start the game:
     
     ./so_long ./soLong/maps/1.ber
     
-    To create the game, use the command:
-    
-        make bonus
-        
-    then start the game with the command
-    
-        ./so_long ./soLong_bonus/maps/2.ber
 
 Above "./so_long" is the name of the game, 
 and "./soLong_bonus/maps/2.ber" is the path to the map.
