@@ -48,6 +48,10 @@ incomplete. Required characters: 01CEP\n"
 #  define KEY_UP_W 13
 #  define KEY_RIGHT_D 2
 #  define KEY_DOWN_S 1
+#  define KEY_LEFT_ARROW 123
+#  define KEY_UP_ARROW 126
+#  define KEY_RIGHT_ARROW 124
+#  define KEY_DOWN_ARROW 125
 #  define KEY_ESC 53
 #  define SYS_FLAG 'A'
 # else
@@ -83,7 +87,7 @@ all the collectibles and now you can go to the exit.\n\033[0m"
 // texture
 # define TEXTURE_EXTENSION_XPM ".xpm"
 // speed of sprites
-# define SPEED_SPRITE 30
+# define SPEED_SPRITE 25
 
 # define TEXTURE_FLOOR "./textures/grass-1.xpm"
 //# define	TEXTURE_FLOOR "./textures/floor_grass.xpm"
