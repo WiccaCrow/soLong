@@ -13,7 +13,8 @@ ___________________________________________________________________RU
 Описание каждой функции в проекте приводится в
 соответствующиx файлax (см. SoLong.h).
 
-ВНИМАНИЕ: Makefile собирает игру для macOS и Linux.
+__ВНИМАНИЕ: Makefile собирает игру для macOS и Linux.__
+
 ________________________________________________EN
 
 DESCRIPTION
@@ -29,7 +30,8 @@ The header SoLong.h shows the structure of this project.
 For each function in the project, a description is made in the 
 appropriate files (see SoLong.h).
 
-ATTENTION: for macOS and Linux.
+__ATTENTION: for macOS and Linux.__
+
 _____________________________________________________________________RU
 
 РУКОВОДСТВО ДЛЯ ЗАПУСКА ИГРЫ
