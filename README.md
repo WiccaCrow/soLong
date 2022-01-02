@@ -34,16 +34,25 @@ _____________________________________________________________________RU
 2. В терминала перейдите в папку проекта "project"
 3. В каждой части (движок и сама игра) есть README.txt 
     с подробными игструкциями. 
+    
   Коротко:
+  
   Для сбора движка игры используйте команду 
-    make
+  
+        make
+    
   затем запустите игру командой 
-    ./so_long ./soLong/maps/1.ber
+  
+        ./so_long ./soLong/maps/1.ber
+    
 
   Для сбора игры используйте команду:
-    make bonus
+  
+        make bonus
+    
   затем запустите игру командой
-  ./so_long ./soLong_bonus/maps/2.ber
+  
+    ./so_long ./soLong_bonus/maps/2.ber
 
   Выше ./so_long имя игры, а ./soLong_bonus/maps/2.ber это путь до карты.
 
@@ -51,7 +60,9 @@ _____________________________________________________________________RU
 см.subject
 
 Папка для хранения карт:
+
 движок soLong/project/soLong/maps/
+
 игра   soLong/project/soLong_bonus/maps/
 
 Приятной Вам игры!!!
@@ -64,16 +75,24 @@ To start the game:
 1. Download / clone this entire repository to yourself
 2. In the terminal go to the project folder "project"
 3. In each part (the engine and the game itself) there 
-    is a README.txt with detailed instructions. Short:
-To create the base, use the command
-    make
-then start the base with the command
+    is a README.txt with detailed instructions. 
+    Short:
+    
+    To create the base, use the command
+    
+        make
+        
+    then start the base with the command
+    
     ./so_long ./soLong/maps/1.ber
     
-To create the game, use the command:
-    make bonus
-then start the game with the command
-    ./so_long ./soLong_bonus/maps/2.ber
+    To create the game, use the command:
+    
+        make bonus
+        
+    then start the game with the command
+    
+        ./so_long ./soLong_bonus/maps/2.ber
 
 Above "./so_long" is the name of the game, 
 and "./soLong_bonus/maps/2.ber" is the path to the map.
@@ -81,7 +100,9 @@ and "./soLong_bonus/maps/2.ber" is the path to the map.
 You can also create maps yourself for more variety.
 
 Card storage folder:
+
 base        soLong/project/soLong/maps/
+
 the game    soLong/project/soLong_bonus/maps/
 
 Enjoy your game !!!
