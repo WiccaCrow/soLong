@@ -48,6 +48,10 @@ incomplete. Required characters: 01CEP\n"
 #  define KEY_UP_W 13
 #  define KEY_RIGHT_D 2
 #  define KEY_DOWN_S 1
+#  define KEY_LEFT_ARROW 123
+#  define KEY_UP_ARROW 126
+#  define KEY_RIGHT_ARROW 124
+#  define KEY_DOWN_ARROW 125
 #  define KEY_ESC 53
 # else
 #  define KEY_LEFT_A 97
