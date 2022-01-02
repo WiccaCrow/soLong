@@ -83,7 +83,7 @@ file: graphics/graphics_2_move.c                         6.5.1.1.1. move_adws_co
 file: graphics/graphics_2_move.c                        6.5.1.1.2. move_adws_exit
 file: graphics/graphics_0_keys.c                            6.4. ft_exit_0
 file: graphics/graphics_2_move.c                        6.5.1.1.3. move_adws_death
-file: sprites_go/sprites_go_move.c                              6.5.1.1.3.1. game_over
+file: sprites_go/sprites_go_move.c                              6.5.1.1.3.1.1. game_over
 file: graphics/graphics_2_move.c                                6.4. ft_exit_0
 file: graphics/graphics_2_move.c                                gnl. ft_strlen
 file: graphics/graphics_1_render.c              6.5.2. drow_map
@@ -102,7 +102,8 @@ file: ../gnl/get_next_line_utils.c                      gnl. ft_strlen;
 file: graphics/graphics_3_counters_and_win_msg.c    6.5.2.5. win_img;
 file: graphics/graphics_3_counters_and_win_msg.c        6.5.2.1.1.1. my_mlx_pix_put
 file: sprites_go/sprites_go_move.c              6.5.3. move_correct_sprites_go
-file: sprites_go/sprites_go_move.c                  6.5.1.1.3.1. game_over
+file: sprites_go/sprites_go_move.c                  6.5.1.1.3.1. check_game_over
+file: sprites_go/sprites_go_move.c                      6.5.1.1.3.1. game_over
 file: main.c                                    5. error_occurse
 file: init_all_construct.c              7. destruct_t_mlx
 file: lib_functions/lib_functions_0.c       7.1. ft_map_list_clear

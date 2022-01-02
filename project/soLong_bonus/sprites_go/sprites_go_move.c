@@ -33,7 +33,8 @@ void	move_correct_sprites_go(t_mlx *all)
 	n = -1;
 	gettimeofday(&tv, NULL);
 	if ((tv.tv_sec > all->tv.tv_sec) || ((tv.tv_sec == all->tv.tv_sec)
-			&& ((int)tv.tv_usec / 1000 - (int)all->tv.tv_usec / 1000 > 20)))
+			&& ((int)tv.tv_usec / 1000 - (int)all->tv.tv_usec / 1000
+				> SPEED_SPRITE)))
 	{
 		all->tv.tv_sec = tv.tv_sec;
 		all->tv.tv_usec = tv.tv_usec;
@@ -47,15 +48,36 @@ void	move_correct_sprites_go(t_mlx *all)
 			}
 			else
 				all->sprites[n].kx *= -1;
-			if ((int)all->x_pl == all->sprites[n].x
-				&& (int)all->y_pl == all->sprites[n].y)
-				game_over(all);
+			check_game_over(all, n);
 		}
 	}
 }
 
+/**************************************
+*   6.5.1.1.3.1. check_game_over      *
+***************************************
+*/
+/*
+ * Description:
+ *      The function checks the conditions for 
+ * 		the death of the player. 
+ * 		Did the sprite catch the player? 
+ * 		If so, the game_over () subfunction is called.
+ * Exit code:
+ * 		0.
+ * Contains functions:
+ * 		6.5.1.1.3.1.1. game_over;
+*/
+
+void	check_game_over(t_mlx *all, int n)
+{
+	if ((int)all->x_pl == all->sprites[n].x
+		&& (int)all->y_pl == all->sprites[n].y)
+		game_over(all);
+}
+
 /********************************
-*   6.5.1.1.3.1. game_over      *
+*   6.5.1.1.3.1.1. game_over    *
 *********************************
 */
 /*

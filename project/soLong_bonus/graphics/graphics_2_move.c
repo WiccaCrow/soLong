@@ -126,7 +126,7 @@ void	move_adws_exit(t_mlx *all)
  * 		the sprite match).
  *      
  * Contains functions:
- * 		6.5.1.1.3.1. game_over;
+ * 		6.5.1.1.3.1.1. game_over;
 */
 
 void	move_adws_death(t_mlx *all)

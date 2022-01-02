@@ -82,6 +82,8 @@ all the collectibles and now you can go to the exit.\n\033[0m"
 # define BLOCK_SIZE_X4 192
 // texture
 # define TEXTURE_EXTENSION_XPM ".xpm"
+// speed of sprites
+# define SPEED_SPRITE 30
 
 # define TEXTURE_FLOOR "./textures/grass-1.xpm"
 //# define	TEXTURE_FLOOR "./textures/floor_grass.xpm"
@@ -97,7 +99,7 @@ all the collectibles and now you can go to the exit.\n\033[0m"
 # define TEXTURE_SPRITE_S_L_2 "./textures/texture_sprite_go_l_2.xpm"
 # define TEXTURE_SPRITE_S_R_1 "./textures/texture_sprite_go_r_1.xpm"
 # define TEXTURE_SPRITE_S_R_2 "./textures/texture_sprite_go_r_2.xpm"
-# define TEXTURE_WON "./textures/Won.xpm"
+# define TEXTURE_WON "./textures/Won-door.xpm"
 
 //
 // textures
@@ -337,6 +339,7 @@ void			sprites_go_drow(t_mlx *all);
 
 // GAME_OVER
 //		file: ./sprites_go/sprites_go_move.c
+void			check_game_over(t_mlx *all, int n);
 void			game_over(t_mlx *all);
 
 #endif
