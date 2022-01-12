@@ -89,7 +89,7 @@ all the collectibles and now you can go to the exit.\n\033[0m"
 // texture
 # define TEXTURE_EXTENSION_XPM ".xpm"
 // speed of sprites
-// # define SPEED_SPRITE 1
+# define SPEED 7
 
 # define TEXTURE_FLOOR "./textures/grass-1.xpm"
 //# define	TEXTURE_FLOOR "./textures/floor_grass.xpm"
@@ -179,6 +179,7 @@ typedef struct s_mlx {
 	t_img			texture_floor;
 	t_img_array		texture_arrays;
 	struct timeval	tv;
+	struct timeval	tv_sprites_go;
 	int				color_skip;
 }	t_mlx;
 

@@ -40,6 +40,7 @@ void	construct_t_mlx(t_mlx *all, char **av)
 	if (all->fd == -1)
 		error_occurse(all, ERROR_OPEN);
 	gettimeofday(&all->tv, NULL);
+	gettimeofday(&all->tv_sprites_go, NULL);
 }
 
 /*****************************************

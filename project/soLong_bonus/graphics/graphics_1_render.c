@@ -31,6 +31,7 @@
 
 int	render_next_frame(t_mlx *all)
 {
+	usleep(SPEED * 10000);
 	mlx_do_sync(all->mlx);
 	move_correct(all);
 	move_correct_sprites_go(all);
